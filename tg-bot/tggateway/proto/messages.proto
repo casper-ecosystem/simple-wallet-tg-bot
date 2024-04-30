@@ -1,0 +1,1072 @@
+syntax = "proto3";
+import "google/protobuf/timestamp.proto";
+
+package tggateway;
+option go_package = "./";
+
+
+message User {
+    int64 id = 1;
+    string username = 2;
+    bool group = 3;
+    int64 chatId =4;
+}
+
+message TgCommandStart {
+    User from = 1;
+    int64 msg_id = 2;
+}
+
+message TgTextMessage {
+    User from = 1;
+    string text = 2;
+    int64 msg_id = 3;
+}
+
+message TgLock {
+    User from = 1;
+}
+
+message TgBalanceButton {
+    User from = 1;
+    int64 msg_id = 2;
+}
+
+message WelcomeResponse {
+    User user = 1;
+    int64 msg_id = 2;
+}
+
+message AuthResponse {
+    string stage = 1;
+    string error = 2;
+    User user = 3;
+    bytes data = 4;
+    string pubkey =5;
+    //int64 msgToDelete =4;
+}
+message DelegatedBalanceData {
+  string validator = 1;
+  double amount = 2;
+}
+
+message DelegatedBalance {
+  repeated DelegatedBalanceData data = 1;
+}
+
+message BeingDelegatedBalanceData {
+  string validator = 1;
+  int64 eraDelegationFinished = 2;
+  double amount = 3;
+}
+
+message BeingDelegatedBalance {
+  repeated BeingDelegatedBalanceData data = 1;
+}
+
+message BeingUndelegatedBalanceData {
+  string validator = 1;
+  int64 eraUndelegationFinished = 2;
+  double amount = 3;
+}
+
+message BeingUndelegatedBalance {
+  repeated BeingUndelegatedBalanceData data = 1;
+}
+message BalanceResponse{
+    User user = 1;
+    double balance = 2;
+    double price = 3;
+    double total = 4;
+    double totalUSD = 5;
+    DelegatedBalance delegatedBalance = 6;
+    BeingDelegatedBalance beingDelegatedBalance = 7;
+    BeingUndelegatedBalance beingUndelegatedBalance = 8;
+    int64 msg_id = 9;
+}
+
+message LoadBalanceResponse{
+    User user = 1;
+    int64 msg_id = 2;
+}
+
+message YieldLoadingResponse{
+    User user = 1;
+    int64 msg_id = 2;
+}
+
+message AskLoginResponse {
+    User user = 1;
+    bool ManualLogout = 2;
+    int64 msg_id = 3;
+
+}
+
+
+message LoginPassInvalidResponse {
+    User user = 1;
+}
+
+message LoginSuccessResponse {
+    User user = 1;
+}
+
+message TgLockButton {
+    User user = 1;
+}
+
+message LockResponse{
+    User user = 1;
+}
+
+message TgSettingsButton {
+    User user = 1;
+    int64 msg_id = 2;
+}
+
+message TgNotifySettingsButton {
+    User user = 1;
+    int64 msg_id = 2;
+}
+
+message SettingsResponse {
+    User user = 1;
+    string public_key = 2;
+    bool notifications = 3;
+    int32 notifyTime = 4;
+    int64 LockTimeout=5;
+    int64 msg_id = 6;
+}
+
+message NotifySettingsResponse {
+    User user = 1;
+    bool notifications = 2;
+    int32 notifyTime = 3;
+    int64 msg_id = 4;
+}
+
+
+message TgLogoutButton {
+    User user = 1;
+    int64 msg_id = 2;
+}
+
+message LogoutConfirmation{
+    User user = 1;
+    int64 msg_id = 2;
+}
+
+message RejectLogout{
+    User user = 1;
+}
+message CancelLogoutButton{
+    User user = 1;
+}
+
+message CancelChangeTimeoutButton{
+    User user = 1;
+    int64 msg_id = 2;
+}
+
+message LogoutResponse{
+    User user = 1;
+}
+
+message LoadHistoryResponse{
+    User user = 1;
+    int64 msg_id = 2;
+}
+
+message TgBalanceButtonHistory{
+    User user = 1;
+    int64 msg_id = 2;
+    int64 start = 3;
+    int64 end = 4;
+}
+
+message Transfer{
+    string from = 1;
+    string to = 2;
+    double amount = 3;
+    string hash = 4;
+    int64 height = 5;
+   string date = 6;
+   bool outward = 7;
+}
+
+message DelegateHistory{
+    string validator = 1;
+    double amount = 2;
+    int64 era = 3;
+    bool isFinished = 4;
+    int64 height = 5;
+    string date = 6;
+}
+
+message UndelegateHistory{
+    string validator = 1;
+    double amount = 2;
+    int64 era = 3;
+    bool isFinished = 4;
+    int64 height = 5;
+    string date = 6;
+}
+
+message TransferHistoryResponse{
+    User user = 1;
+    int64 msg_id = 2;
+    int64 start = 3;
+    string start_date = 9;
+    string end_date = 10;
+    int64 end = 4;
+    repeated Transfer transfers = 5;
+    repeated DelegateHistory delegates = 6;
+    repeated UndelegateHistory undelegates = 7;
+    bool  isFirst = 8;
+    bool Error = 11;
+}
+
+message TgButtonRewardsHistory{
+    User user = 1;
+    int64 msg_id = 2;
+    int64 start = 3;
+    int64 end = 4;
+}
+
+message Reward{
+    string validator = 1;
+    double amount = 2;
+    int64 era = 3;
+    uint64 first_era = 4;
+    uint64 last_era =5;
+    string last_reward_time = 6;
+    string timestamp = 7;
+}
+
+message RewardsHistoryResponse{
+    User user = 1;
+    int64 msg_id = 2;
+    int64 start = 3;
+    int64 end = 4;
+    string start_date = 9;
+    string end_date = 10;
+    repeated Reward rewards = 5;
+    bool  isFirst = 6;
+}
+
+message TgChangeLockTimeoutButton{
+    User user = 1;
+    int64 msg_id = 2;
+}
+
+message ChangeLogoutAskTime{
+    User user = 1;
+    int64 msg_id = 2;
+    int64 current_time=3;
+}
+
+message ChangeLogoutAskTimeResponse{
+    User user = 1;
+    int64 msg_id = 2;
+    int64 time =3;
+    int64 currentTume =4;
+}
+
+message TgYieldButton{
+    User user = 1;
+    int64 msg_id = 2;
+    bool IsRestored = 3;
+}
+
+message YieldEstimate{
+    string validator = 1;
+    double amount = 2;
+}
+
+message YieldResponse{
+    User user = 1;
+    int64 msg_id = 2;
+    double rewards = 3;
+    double NetworkApy = 4;
+    double rewardsUSD = 5;
+    repeated YieldEstimate estimates = 6;
+    double TotalDelegated = 7;
+    repeated YieldValidatorData ValidatorsData = 8;
+    double Estim30Days = 9;
+    double Estim365Days = 10;
+    double EstimApy = 11;
+    double Estim30DaysUSD =12;
+    double Estim365DaysUSD = 13;
+}
+
+message YieldValidatorData{
+    string address = 1;
+    double amount =2;
+    double fee = 3;
+    double apy = 4;
+}
+
+message TgOnOffNotifications{
+    User user = 1;
+    int64 msg_id = 2;
+}
+
+message ChangeRewardsNotifyTime{
+    User user = 1;
+    int64 msg_id = 2;
+}
+
+message TooManyTasksResponse{
+    User user = 1;
+    int64 msg_id = 2;
+}
+
+message NotificationNewTransfer{
+    User user = 1;
+    string from = 2;
+    string to = 3;
+    double amount = 4;
+    double gas = 5;
+    string hash = 6;
+    double balance = 7;
+}
+
+message NotificationNewDelegate{
+    User user = 1;
+    string validator = 2;
+    double amount = 3;
+    double balance = 4;
+    int64 height = 5;
+}
+
+message NotificationNewUndelegate{
+    User user = 1;
+    string validator = 2;
+    double amount = 3;
+    int64 era = 4;
+    double balance = 5;
+}
+
+message NotificationNewReward{
+    User user = 1;
+   repeated Reward rewards = 2;
+   double delegated = 3;
+   uint64 first_era = 4;
+   uint64 last_era = 5;
+   string first_era_timestamp = 6;
+   string last_era_timestamp = 7;
+
+}
+
+
+message NotificationNewBalance{
+   User user = 1;
+   double balance = 2;
+   double old_balance =3;
+}
+
+message TgAddressButton {
+    User from = 1;
+    int64 msg_id = 2;
+    int64 offset = 3;
+}
+
+message AddressRow {
+    string address = 1;
+    string name = 2;
+    uint64 id = 3;
+}
+
+message AddressResponse {
+    User user = 1;
+    int64 msg_id = 2;
+    repeated AddressRow addresses = 3;
+    int64 offset = 4;
+    int64 total = 5;
+}
+
+message CreateEntryAddressBookButton{
+    User user = 1;
+    int64 msg_id = 2;
+}
+
+message AskNameAddressBook{
+    User user = 1;
+    int64 msg_id = 2;
+}
+
+message CancelAddressBook{
+    User user = 1;
+    int64 msg_id = 2;
+}
+
+
+
+message AskAddressAddressBook{
+    User user = 1;
+    int64 msg_id = 2;
+    string address = 3;
+    string name =4;
+}
+
+message AskAddressBookDetailed{
+    User user = 1;
+    int64 msg_id = 2;
+    uint64 id = 3;
+}
+
+message AskAddressInvalidResponse{
+    User user = 1;
+    int64 msg_id = 2;
+}
+
+message AddressBookDetailed{
+    User user = 1;
+    int64 msg_id = 2;
+    string address = 3;
+    string name = 4;
+    uint64 id = 5;
+    google.protobuf.Timestamp created = 6;
+}
+
+message ChangeNameAddressBook{
+    User user = 1;
+    int64 msg_id = 2;
+    uint64 id = 3;
+}
+
+message ChangeAddressAddressBook{
+    User user = 1;
+    int64 msg_id = 2;
+    uint64 id = 3;
+}
+
+message DeleteEntryAddressBook{
+    User user = 1;
+    int64 msg_id = 2;
+    uint64 id = 3;
+}
+
+message DeleteEntryAddressBookConfirmationMessage{
+    User user = 1;
+    int64 msg_id = 2;
+    string name =3;
+    string address =4;
+}
+
+message DeleteEntryAddressBookConfirm{
+    User user = 1;
+    int64 msg_id = 2;
+}
+
+message AuthRegisterType {
+    User user = 1;
+    int64 msg_id = 2;
+}
+
+message AddExistingWalletButton{
+    User user = 1;
+    int64 msg_id = 2;
+}
+
+message StoreTheKeyButton{
+    User user = 1;
+    int64 msg_id = 2;
+    bool IsStore = 3;
+}
+
+message CreateNewWalletButton{
+    User user = 1;
+    int64 msg_id = 2;
+}
+
+message NewTransferButton{
+    User user = 1;
+    int64 msg_id = 2;
+}
+
+
+message NewTransferResponseStage1{
+    User user = 1;
+    int64 msg_id = 2;
+    string balance =3;
+}
+
+message TransferCustomAddressButton{
+    User user = 1;
+    int64 msg_id = 2;
+}
+
+message TransferAskCustomAddress{
+    User user = 1;
+    int64 msg_id = 2;
+}
+
+message TransferAskAmount{
+    User user = 1;
+    int64 msg_id = 2;
+    double recommended = 3;
+    string to_pubkey = 4;
+}
+
+message TransferAskMemo{
+    User user = 1;
+    int64 msg_id = 2;
+    string amount =3;
+}
+
+
+message TransferAskConfirmation{
+    User user = 1;
+    int64 msg_id = 2;
+    string amount =3;
+    string to_pubkey = 4;
+    string name = 5;
+}
+
+message TransferConfirmButton{
+    User user = 1;
+    int64 msg_id = 2;
+}
+
+
+message SignDeployAskPassword{
+    User user = 1;
+    int64 msg_id = 2;
+}
+
+message TransferSuccesResponse{
+    User user = 1;
+    int64 msg_id = 2;
+    string amount =3;
+    uint64 memo = 4;
+    string to_pubkey = 5;
+    string name = 6;
+    string hash = 7;
+}
+
+message TransferMaximumButton{
+    User user = 1;
+    int64 msg_id = 2;
+}
+
+message TransferAddressIsNotValid{
+    User user = 1;
+    int64 msg_id = 2;
+}
+
+message TransferAmountIsNotValid{
+    User user = 1;
+    int64 msg_id = 2;
+}
+
+message InvoiceRepeatabilityIsNotValid{
+    User user = 1;
+    int64 msg_id = 2;
+}
+
+message TransferMemoIsNotValid{
+    User user = 1;
+    int64 msg_id = 2;
+}
+message TransferAddressBookButton{
+    User user = 1;
+    int64 msg_id = 2;
+    int64 offset = 3;
+}
+
+message PickTransferAddress{
+    User user = 1;
+    int64 msg_id = 2;
+    uint64 id = 3;
+}
+
+message transferWithoutMemo{
+    User user = 1;
+    int64 msg_id = 2;
+}
+
+message transferBadPassword{
+    User user = 1;
+    int64 msg_id = 2;
+}
+
+message transferUnknownError{
+    User user = 1;
+    int64 msg_id = 2;
+}
+
+message SignDeployAskPK{
+    User user = 1;
+    int64 msg_id = 2;
+}
+
+message TransferBadPK{
+    User user = 1;
+    int64 msg_id = 2;
+}
+
+message NewDelegateButton{
+    User user = 1;
+    int64 msg_id = 2;
+    int64 offset = 3;
+}
+
+message ValidatorsRow {
+    string address = 1;
+    double fee =2;
+    int32 delegators =3;
+    uint64 id = 4;
+}
+
+message DelegateValidatorsList {
+    User user = 1;
+    int64 msg_id = 2;
+    repeated ValidatorsRow validators = 3;
+    int64 offset = 4;
+    int64 total = 5;
+    string userBalance =6;
+}
+
+message PickDelegateValidator{
+    User user = 1;
+    int64 msg_id = 2;
+    uint64 id = 3;
+}
+
+
+message DelegateAskAmount{
+    User user = 1;
+    int64 msg_id = 2;
+    double userBalance = 3;
+    string validator = 4;
+}
+
+message DelegatePickAmount{
+    User user = 1;
+    int64 msg_id = 2;
+    double amount = 3;
+}
+
+
+message DelegateConfirmation{
+    User user = 1;
+    int64 msg_id = 2;
+    double amount = 3;
+    string validator = 4;
+
+}
+
+message DelegateConfirmButton{
+    User user = 1;
+    int64 msg_id = 2;
+}
+
+message DelegateSuccesResponse{
+    User user = 1;
+    int64 msg_id = 2;
+    string amount =3;
+    string delegator = 5;
+    string validator = 6;
+    string hash = 7;
+}
+
+message UndelegateSuccesResponse{
+    User user = 1;
+    int64 msg_id = 2;
+    string amount =3;
+    string delegator = 5;
+    string validator = 6;
+    string hash = 7;
+}
+
+message NewUndelegateButton{
+    User user = 1;
+    int64 msg_id = 2;
+    int64 offset = 3;
+}
+
+message DelegatesRow {
+    string address = 1;
+    string amount =2;
+    uint64 id = 3;
+}
+
+message DelegatesList {
+    User user = 1;
+    int64 msg_id = 2;
+    repeated DelegatesRow delegates = 3;
+    int64 offset = 4;
+    int64 total = 5;
+}
+
+message pickUndelegateValidator{
+    User user = 1;
+    int64 msg_id = 2;
+    uint64 id = 3;
+}
+
+message UndelegateAskAmount{
+    User user = 1;
+    int64 msg_id = 2;
+    string stakedBalance = 3;
+    string validator = 4;
+}
+
+message UndelegatePickAmount{
+    User user = 1;
+    int64 msg_id = 2;
+    double amount = 3;
+}
+
+message UndelegateConfirmation{
+    User user = 1;
+    int64 msg_id = 2;
+    double amount = 3;
+    string validator = 4;
+}
+
+message UndelegateConfirmButton{
+    User user = 1;
+    int64 msg_id = 2;
+}
+
+message NewDepositButton{
+    User user = 1;
+    int64 msg_id = 2;
+}
+
+message DepositResponse{
+    User user = 1;
+    int64 msg_id = 2;
+    string address =3;
+}
+
+message SwapBySwapButton{
+    User user = 1;
+    int64 msg_id = 2;
+    bool withdraw =3;
+}
+
+message AskSwapPairs{
+    User user = 1;
+    int64 msg_id = 2;
+    int64 limit = 3;
+    int64 offset =4;
+}
+
+message ShowSwapPairs{
+    User user = 1;
+    int64 msg_id = 2;
+    int64 offset =3;
+    int64 total =4;
+    repeated string pairs =5;
+    string type = 6;
+}
+
+message pickSwapPair{
+    User user = 1;
+    int64 msg_id = 2;
+    string cur = 3;
+}
+
+
+message Chain{
+    string name = 1;
+    string short = 2;
+}
+message ShowSwapChains{
+    User user = 1;
+    int64 msg_id = 2;
+    string coin = 3;
+    repeated Chain chains =4;
+}
+
+message pickSwapChain{
+    User user = 1;
+    int64 msg_id = 2;
+    string chain = 3;
+}
+
+message SwapAskAmount{
+    User user = 1;
+    int64 msg_id = 2;
+    string fromCurr = 3;
+    string toCurr = 4;
+   double min  = 5;
+   double max  =6;
+}
+
+message SwapAmountEstimated{
+    User user = 1;
+    int64 msg_id = 2;
+    double estimated = 3;
+    double amount =4;
+    string curr = 5;
+    string currFrom =6;
+}
+
+message SwapConfirmAmount{
+    User user = 1;
+    int64 msg_id = 2;
+}
+
+message ExportPrivateKeyButton{
+    User user = 1;
+    int64 msg_id = 2;
+}
+
+message SwapAskRefundAddress{
+    User user = 1;
+    int64 msg_id = 2;
+    string curr = 3;
+    string chain = 4;
+}
+
+
+message SwapSuccessResponse{
+    User user = 1;
+    int64 msg_id = 2;
+    string id = 3;
+    string dep_address =4;
+    double amount =5;
+    string from_cur =6;
+    string to_cur =7;
+    double estimated =8;
+}
+
+message SwapAskToAddress{
+    User user = 1;
+    int64 msg_id = 2;
+    string curr = 3;
+}
+
+message ExportAskPassword{
+    User user = 1;
+    int64 msg_id = 2;
+}
+
+message TgPrivacySettingsButton{ 
+    User user = 1;
+    int64 msg_id = 2;
+}
+
+message PrivacyMenu{
+    User user = 1;
+    int64 msg_id = 2;
+    bool LogStatus = 3;
+}
+
+message ToggleLogging{
+    User user = 1;
+    int64 msg_id = 2;
+}
+
+
+message ExportIncorrectPassword{
+    User user = 1;
+    int64 msg_id = 2;
+}
+
+message SwapLoadingResponse{
+    User user = 1;
+    int64 msg_id = 2;
+}
+
+
+message ErrorExportPKNotStore{
+    User user = 1;
+    int64 msg_id = 2;
+}
+
+message TgInvoicesButton {
+    User from = 1;
+    int64 msg_id = 2;
+    int64 offset = 3;
+}
+message InvoiceRow {
+    string name = 1;
+    string amount =2;
+    uint64 id = 3;
+}
+
+message InvoicesListResponse {
+    User user = 1;
+    int64 msg_id = 2;
+    repeated InvoiceRow invoices = 3;
+    int64 offset = 4;
+    int64 total = 5;
+}
+
+message TgNewInvoiceButton {
+    User from = 1;
+    int64 msg_id = 2;
+}
+
+message AskInvoiceName{
+    User user = 1;
+    int64 msg_id = 2;
+}
+
+message AskInvoiceAmount{
+    User user = 1;
+    int64 msg_id = 2;
+    string name =3;
+}
+
+message AskInvoiceRepeatability{
+    User user = 1;
+    int64 msg_id = 2;
+    string name =3;
+}
+
+message AskInvoiceComment{
+    User user = 1;
+    int64 msg_id = 2;
+    string name =3;
+}
+
+message InvoiceCreateSuccess{
+    User user = 1;
+    int64 msg_id = 2;
+    string name =3;
+    string amount =4;
+    int64 Repeatability =5;
+    string comment =6;
+    int64 id =7;
+    string short =8;
+}
+
+message AskInvoiceDetailed{
+    User user = 1;
+    int64 msg_id = 2;
+    uint64 id = 3;
+}
+
+message InvoiceDetailed{
+    User user = 1;
+    int64 msg_id = 2;
+    string name =3;
+    string amount =4;
+    int64 Repeatability =5;
+    string comment =6;
+    int64 id =7;
+    int64 paid =8;
+    string short =9;
+}
+
+message DeleteInvoice{
+    User user = 1;
+    int64 msg_id = 2;
+    uint64 id = 3;
+}
+
+message PayInvoiceHandler{
+    User user = 1;
+    string short =2;
+}
+
+
+message PayInvoiceNotRegisteredPM{
+    User user = 1;
+    string short =2;
+}
+
+message PayInvoiceNotAviablePM{
+    User user = 1;
+    string short =2;
+}
+
+message PayInvoiceRegisteredResponse{
+    User user = 1;
+    int64 msg_id = 2;
+    bool balanceEnough =3;
+    string name =4;
+    string amount =5;
+    int64 Repeatability =6;
+    string comment =7;
+    int64 id =8;
+    int64 paid =9;
+    string short =10;
+    uint64 memo = 11;
+}
+
+message PayInvoiceTransfer{
+    User user = 1;
+    int64 msg_id = 2;
+    string short = 3;
+}
+message PayInvoiceSwap{
+    User user = 1;
+    int64 msg_id = 2;
+    string short = 3;
+}
+
+
+message ShowInvoicePayments{
+    User user = 1;
+    int64 msg_id = 2;
+    uint64 id =3;
+    int64 offset = 4;
+}
+
+message PaymentRow {
+    string from = 1;
+    string amount =2;
+    bool success = 3;
+}
+
+
+message PaymentsListResponse {
+    User user = 1;
+    int64 msg_id = 2;
+    repeated PaymentRow payments = 3;
+    int64 offset = 4;
+    int64 total = 5;
+    int64 id = 6;
+}
+
+message ShowRecentInvoices{
+    User user = 1;
+    int64 msg_id = 2;
+    int64 offset = 3;
+}
+
+message RecentInvoiceRow {
+    string name = 1;
+    string status =2;
+    string short = 3;
+}
+
+
+message RecentInvoicesListResponse {
+    User user = 1;
+    int64 msg_id = 2;
+    repeated RecentInvoiceRow invoices = 3;
+    int64 offset = 4;
+    int64 total = 5;
+}
+
+message ExportPaymentsInvoice{
+    User user = 1;
+    int64 msg_id = 2;
+    int64 id =3;
+}
+
+message ExportPaymentsInvoiceResponse {
+    User user = 1;
+    int64 msg_id = 2;
+    bytes data = 3;
+    string short = 4;
+}
+
+message DeleteInvoiceConfirmationMessage{
+    User user = 1;
+    int64 msg_id = 2;
+    uint64 invoiceID =3;
+}
+message DeleteInvoiceConfirm{
+    User user = 1;
+    int64 msg_id = 2;
+    uint64 id = 3;
+}

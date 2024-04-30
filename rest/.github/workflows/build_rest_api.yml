@@ -1,0 +1,73 @@
+name: Build API Image
+on:
+  workflow_dispatch:
+    inputs:
+      deploy_target:
+        required: true
+        type: string
+        default: 'stage'
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+ build-and-push-image:
+   runs-on: ubuntu-latest
+   permissions:
+     contents: read
+     packages: write
+
+   steps:
+     - name: Checkout repository
+       uses: actions/checkout@v3
+
+     - name: Log in to the Container registry
+       uses: docker/login-action@v2
+       with:
+         registry: ${{ env.REGISTRY }}
+         username: ${{ github.actor }}
+         password: ${{ secrets.GITHUB_TOKEN }}
+
+     - name: Set up Docker Buildx
+       uses: docker/setup-buildx-action@v2
+
+     - name: Extract metadata (tags, labels) for Docker
+       id: meta
+       uses: docker/metadata-action@v4
+       with:
+         images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+         tags: |
+           type=raw,value={{branch}}-{{sha}}-${{env.GITHUB_RUN_NUMBER}}
+           type=raw,value=${{ inputs.deploy_target }}
+           type=raw,value=latest
+
+     - name: Build and push Docker image
+       uses: docker/build-push-action@v4
+       with:
+         context: .
+         push: true
+         tags: ${{ steps.meta.outputs.tags }}
+         labels: ${{ steps.meta.outputs.labels }}  
+         cache-from: type=gha
+         cache-to: type=gha,mode=max
+         build-args: GITHUB_ACCESS_TOKEN=${{ secrets.LIBRARY_TOKEN }}
+
+ deploy:
+    needs: build-and-push-image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run command on remote server
+        uses: D3rHase/ssh-command-action@v0.2.2
+        with:
+          host: ${{vars.SSH_HOST_APP1}}
+          port: ${{vars.SSH_PORT_APP1}}
+          user: ${{vars.SSH_USER_APP1}}
+          private_key: ${{secrets.SSH_PRIVATE_KEY}}
+          command: |
+            echo ${{ secrets.DOCKER_TOKEN }} | docker login ghcr.io -u ${{ vars.DOCKER_USER }} --password-stdin;
+            docker pull ghcr.io/simplewallethq/rest-api:${{ inputs.deploy_target }};
+            docker stop rest-api-${{ inputs.deploy_target }};
+            docker rm rest-api-${{ inputs.deploy_target }};
+            docker run --name rest-api-${{ inputs.deploy_target }} -d -p 8082:8081 --restart always  ghcr.io/simplewallethq/rest-api:${{ inputs.deploy_target }};
+            docker image prune -a --force;

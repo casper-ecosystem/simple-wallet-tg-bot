@@ -1,0 +1,78 @@
+name: Build Bot
+on:
+  workflow_dispatch:
+    inputs:
+      deploy_target:
+        required: true
+        type: string
+        default: 'stage_inv'
+      perform_deploy:
+        required: true
+        default: true
+        type: boolean
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+ build-and-push-image:
+   runs-on: ubuntu-latest
+   permissions:
+     contents: read
+     packages: write
+
+   steps:
+     - name: Checkout repository
+       uses: actions/checkout@v3
+
+     - name: Log in to the Container registry
+       uses: docker/login-action@v2
+       with:
+         registry: ${{ env.REGISTRY }}
+         username: ${{ github.actor }}
+         password: ${{ secrets.GITHUB_TOKEN }}
+
+     - name: Set up Docker Buildx
+       uses: docker/setup-buildx-action@v2
+
+     - name: Extract metadata (tags, labels) for Docker
+       id: meta
+       uses: docker/metadata-action@v4
+       with:
+         images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+         tags: |
+           type=raw,value={{branch}}-{{sha}}-${{env.GITHUB_RUN_NUMBER}}
+           type=raw,value=${{ inputs.deploy_target }}
+           type=raw,value=latest
+
+     - name: Build and push Docker image
+       uses: docker/build-push-action@v4
+       with:
+         context: .
+         push: true
+         tags: ${{ steps.meta.outputs.tags }}
+         labels: ${{ steps.meta.outputs.labels }}  
+         cache-from: type=gha
+         cache-to: type=gha,mode=max
+
+ deploy:
+    needs: build-and-push-image
+    runs-on: ubuntu-latest
+    environment: stage_inv
+    if: ${{ inputs.perform_deploy }}
+    steps:
+      - name: Run command on remote server
+        uses: D3rHase/ssh-command-action@v0.2.2
+        with:
+          host: ${{vars.SSH_HOST_APP1}}
+          port: ${{vars.SSH_PORT_APP1}}
+          user: ${{vars.SSH_USER_APP1}}
+          private_key: ${{secrets.SSH_PRIVATE_KEY}}
+          command: |
+            echo ${{ secrets.DOCKER_TOKEN }} | docker login ghcr.io -u ${{ vars.DOCKER_USER }} --password-stdin;
+            docker pull ghcr.io/simplewallethq/tg-bot:${{ inputs.deploy_target }};
+            docker stop tg-bot-${{ inputs.deploy_target }};
+            docker rm tg-bot-${{ inputs.deploy_target }};
+            docker run --name tg-bot-${{ inputs.deploy_target }} -d --restart always --env TG_TOKEN=${{ secrets.TG_BOT_DEV_TOKEN }} --env REST_HOST="${{vars.TG_BOT_REST_HOST}}api/v1/cspr-testnet" --env RPC_NODE="65.21.238.180" --env CHAIN="casper-test" --env DB_HOST=${{vars.TG_BOT_DB_HOST}} --env DB_PORT=${{vars.TG_BOT_DB_PORT}} --env  DB_USER=${{secrets.TG_BOT_DB_USER}} --env DB_PASSWORD=${{secrets.TG_BOT_DB_PASSWORD}} --env DB_NAME=${{vars.TG_BOT_DB_NAME}}  --env PK_SALT="${{secrets.PK_SALT_STAGE}}" --env SWAP_TOKEN="${{secrets.TG_BOT_SIMPLE_SWAP_KEY}}" ghcr.io/simplewallethq/tg-bot:${{ inputs.deploy_target }};
+            docker image prune -a --force;

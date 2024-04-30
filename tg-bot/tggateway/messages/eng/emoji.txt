@@ -1,0 +1,24 @@
+:exclamation: ❗
+:globe_with_meridians: 🌐
+:key: 🔑
+:x: ❌
+:hourglass_flowing_sand: ⏳
+:star2: ⭐
+:chart_with_upwards_trend: 📈
+:dizzy: 💫
+:bar_chart: 📊
+:closed_lock_with_key: 🔐
+:droplet: 💧
+:rocket: 🚀
+:arrows_counterclockwise: 🔄
+:warning: ⚠️
+:money_with_wings: 💸
+:briefcase: 💼
+:bulb: 💡
+:1234: 🔢
+:arrow_left: ⬅️
+:arrow_right: ➡️
+
+:no_entry_sign: 🚫
+:unlock: 🔓
+:bookmark_tabs: 📑

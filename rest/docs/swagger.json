@@ -1,0 +1,1915 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "casper blockchain rest api",
+        "title": "CSPR REST",
+        "contact": {},
+        "version": "1.0"
+    },
+    "host": "localhost:8081",
+    "basePath": "/",
+    "paths": {
+        "/api/v1/{cspr_chain}/calculate_current_chain_apy": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Calculates the current Annual Percentage Yield (APY) for the specified chain by querying the specified rpc_node",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Casper"
+                ],
+                "summary": "Calculate current chain APY",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "cspr-testnet",
+                        "description": "cspr/cspr-testnet",
+                        "name": "cspr_chain",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "65.21.238.180",
+                        "description": "The IP address of the Casper RPC node",
+                        "name": "rpc_node",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A JSON object containing the current APY for the specified chain",
+                        "schema": {
+                            "$ref": "#/definitions/casper.CalculateCurrentChainAPY.Response"
+                        }
+                    },
+                    "400": {
+                        "description": "Returned when the rpc_node or chain parameter is missing, or an invalid IP address is provided",
+                        "schema": {
+                            "$ref": "#/definitions/casper.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Returned when there is an error querying the Casper network or processing the response",
+                        "schema": {
+                            "$ref": "#/definitions/casper.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/{cspr_chain}/get_apr_by_era": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Retrieves the Annual Percentage Rate (APR) for a delegator address by querying the specified rpc_node within a range of eras",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Casper"
+                ],
+                "summary": "Get APR for a delegator by era range",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "cspr-testnet",
+                        "description": "cspr/cspr-testnet",
+                        "name": "cspr_chain",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "65.21.238.180",
+                        "description": "The IP address of the Casper RPC node",
+                        "name": "rpc_node",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "020237037ff4845669e59d3e7698e7d58eb97ca378960ac57478a86a6a3535460292",
+                        "description": "The address of the delegator for which to retrieve the APR",
+                        "name": "address",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "default": 8924,
+                        "description": "The starting era for the range",
+                        "name": "era_start",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "default": 8927,
+                        "description": "The ending era for the range",
+                        "name": "era_end",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A JSON object containing the APY for the provided delegator address within the specified range",
+                        "schema": {
+                            "$ref": "#/definitions/casper.GetAPRByEra.Response"
+                        }
+                    },
+                    "400": {
+                        "description": "Returned when the rpc_node, address, era_start, or era_end parameter is missing, or an invalid IP address or address is provided",
+                        "schema": {
+                            "$ref": "#/definitions/casper.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Returned when there is an error querying the Casper network or processing the response",
+                        "schema": {
+                            "$ref": "#/definitions/casper.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/{cspr_chain}/get_balance_being_delegated": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Retrieves the balance being delegated for a delegator address by querying the specified rpc_node",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Casper"
+                ],
+                "summary": "Get balance being delegated for a delegator",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "cspr-testnet",
+                        "description": "cspr/cspr-testnet",
+                        "name": "cspr_chain",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "65.21.238.180",
+                        "description": "The IP address of the Casper RPC node",
+                        "name": "rpc_node",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "020237037ff4845669e59d3e7698e7d58eb97ca378960ac57478a86a6a3535460292",
+                        "description": "The address of the delegator for which to retrieve the balance being delegated",
+                        "name": "address",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An array of JSON objects containing the balance being delegated for the provided delegator address",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/casper.GetBalanceBeingdelegated.Response"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Returned when the rpc_node or address parameter is missing, or an invalid IP address or address is provided",
+                        "schema": {
+                            "$ref": "#/definitions/casper.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Returned when there is an error querying the Casper network or processing the response",
+                        "schema": {
+                            "$ref": "#/definitions/casper.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/{cspr_chain}/get_balance_being_undelegated": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Retrieves the balance being undelegated for a given address by querying the specified rpc_node",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Casper"
+                ],
+                "summary": "Get the balance being undelegated for an address",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "cspr-testnet",
+                        "description": "cspr/cspr-testnet",
+                        "name": "cspr_chain",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "65.21.238.180",
+                        "description": "The IP address of the Casper RPC node",
+                        "name": "rpc_node",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "020237037ff4845669e59d3e7698e7d58eb97ca378960ac57478a86a6a3535460292",
+                        "description": "The address for which to retrieve the unstaking balance",
+                        "name": "address",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A JSON array containing the unstaking balances for the provided address",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/definitions/casper.GetBalanceBeingUndelegated.Response"
+                                    },
+                                    {
+                                        "type": "object",
+                                        "properties": {
+                                            "Data": {
+                                                "$ref": "#/definitions/casper.PayloadBalanceBeingUndelegated"
+                                            }
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Returned when the rpc_node, address parameter is missing, or an invalid IP address or address is provided",
+                        "schema": {
+                            "$ref": "#/definitions/casper.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Returned when there is an error querying the Casper network or processing the response",
+                        "schema": {
+                            "$ref": "#/definitions/casper.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/{cspr_chain}/get_balance_delegated": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Retrieves the delegated account balance for a given Casper address by querying the specified rpc_node and returns the balance associated with each validator",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Casper"
+                ],
+                "summary": "Get delegated account balance for a Casper address",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "cspr-testnet",
+                        "description": "cspr/cspr-testnet",
+                        "name": "cspr_chain",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "65.21.238.180",
+                        "description": "The IP address of the Casper RPC node",
+                        "name": "rpc_node",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "011b87a676e4ac0336f54cb40141a97600464cddab056e2664d5f76d77dbd94635",
+                        "description": "The public key of the Casper address to retrieve the delegated balance for",
+                        "name": "address",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A JSON object containing the delegated balance and decimals values of the provided Casper address",
+                        "schema": {
+                            "$ref": "#/definitions/casper.GetDelegatedBalanceHandler.Response"
+                        }
+                    },
+                    "400": {
+                        "description": "Returned when the rpc_node or pubkey parameter is missing or an invalid IP address is provided",
+                        "schema": {
+                            "$ref": "#/definitions/casper.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Returned when there is an error querying the Casper network or processing the response",
+                        "schema": {
+                            "$ref": "#/definitions/casper.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/{cspr_chain}/get_balance_main": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Retrieves the account balance for a given Casper address by querying the specified rpc_node",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Casper"
+                ],
+                "summary": "Get liquid account balance for a Casper address",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "cspr-testnet",
+                        "description": "cspr/cspr-testnet",
+                        "name": "cspr_chain",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "65.21.238.180",
+                        "description": "The IP address of the Casper RPC node",
+                        "name": "rpc_node",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "011b87a676e4ac0336f54cb40141a97600464cddab056e2664d5f76d77dbd94635",
+                        "description": "The public key of the Casper address to retrieve the balance for",
+                        "name": "address",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A JSON object containing the balance and decimals values of the provided Casper address",
+                        "schema": {
+                            "$ref": "#/definitions/casper.GetAccountBalanceHandler.Response"
+                        }
+                    },
+                    "400": {
+                        "description": "Returned when the rpc_node or pubkey parameter is missing or an invalid IP address is provided",
+                        "schema": {
+                            "$ref": "#/definitions/casper.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Returned when there is an error querying the Casper network or processing the response",
+                        "schema": {
+                            "$ref": "#/definitions/casper.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/{cspr_chain}/get_block_by_timestamp": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Retrieves the timestamp of a given Casper block by querying the specified rpc_node",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Casper"
+                ],
+                "summary": "Get the timestamp of a Casper block by timestamp",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "cspr-testnet",
+                        "description": "cspr/cspr-testnet",
+                        "name": "cspr_chain",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "65.21.238.180",
+                        "description": "The IP address of the Casper RPC node",
+                        "name": "rpc_node",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "2023-04-11T11:18:04+00:00",
+                        "description": "The timestamp to retrieve the block height for",
+                        "name": "timestamp",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A JSON object containing the block height of the provided Casper timestamp",
+                        "schema": {
+                            "$ref": "#/definitions/casper.GetBlockByTimestamp.Response"
+                        }
+                    },
+                    "400": {
+                        "description": "Returned when the rpc_node, timestamp parameter is missing, or an invalid IP address or timestamp is provided",
+                        "schema": {
+                            "$ref": "#/definitions/casper.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Returned when there is an error querying the Casper network or processing the response",
+                        "schema": {
+                            "$ref": "#/definitions/casper.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/{cspr_chain}/get_block_events": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Retrieves all events (transfers, delegates, undelegates) from a given block by querying the specified rpc_node",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Casper"
+                ],
+                "summary": "Get all events from a specific block",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "cspr-testnet",
+                        "description": "cspr/cspr-testnet",
+                        "name": "cspr_chain",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "65.21.238.180",
+                        "description": "The IP address of the Casper RPC node",
+                        "name": "rpc_node",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "default": 1808739,
+                        "description": "The block height to retrieve events from",
+                        "name": "height",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "boolean",
+                        "default": true,
+                        "description": "Include transfer events",
+                        "name": "transfers",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "boolean",
+                        "default": true,
+                        "description": "Include delegate events",
+                        "name": "delegates",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "boolean",
+                        "default": true,
+                        "description": "Include undelegate events",
+                        "name": "undelegates",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "boolean",
+                        "default": true,
+                        "description": "Include rewards events",
+                        "name": "rewards",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A JSON object containing all events from the provided block",
+                        "schema": {
+                            "$ref": "#/definitions/casper.BlockEventsResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Returned when the rpc_node, height, transfers, delegates, or undelegates parameter is missing, or an invalid IP address or block height is provided",
+                        "schema": {
+                            "$ref": "#/definitions/casper.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Returned when there is an error querying the network or processing the response",
+                        "schema": {
+                            "$ref": "#/definitions/casper.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/{cspr_chain}/get_era_by_timestamp": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Retrieves the timestamp of a given Casper era by querying the specified rpc_node",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Casper"
+                ],
+                "summary": "Get the timestamp of a Casper era by timestamp",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "cspr-testnet",
+                        "description": "cspr/cspr-testnet",
+                        "name": "cspr_chain",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "65.21.238.180",
+                        "description": "The IP address of the Casper RPC node",
+                        "name": "rpc_node",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "2023-04-11T11:18:04+00:00",
+                        "description": "The timestamp to retrieve the block height for",
+                        "name": "timestamp",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A JSON object containing the era ID of the provided Casper timestamp",
+                        "schema": {
+                            "$ref": "#/definitions/casper.GetEraByTimestamp.Response"
+                        }
+                    },
+                    "400": {
+                        "description": "Returned when the rpc_node, timestamp parameter is missing, or an invalid IP address or timestamp is provided",
+                        "schema": {
+                            "$ref": "#/definitions/casper.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Returned when there is an error querying the Casper network or processing the response",
+                        "schema": {
+                            "$ref": "#/definitions/casper.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/{cspr_chain}/get_history_delegate": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Retrieves the history of delegates for a given address by querying the specified rpc_node within a range of block heights",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Casper"
+                ],
+                "summary": "Get history of delegates for an address",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "cspr-testnet",
+                        "description": "cspr/cspr-testnet",
+                        "name": "cspr_chain",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "65.21.238.180",
+                        "description": "The IP address of the Casper RPC node",
+                        "name": "rpc_node",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "020237037ff4845669e59d3e7698e7d58eb97ca378960ac57478a86a6a3535460292",
+                        "description": "The address for which to retrieve the history of finished stake",
+                        "name": "address",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "default": 1660930,
+                        "description": "The starting block height for the range",
+                        "name": "block_start",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "default": 1660950,
+                        "description": "The ending block height for the range",
+                        "name": "block_end",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A JSON array containing the history of finished stakes for the provided address within the specified range",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/casper.GetHistoryDelegate.Response"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Returned when the rpc_node, address, block_start, or block_end parameter is missing, or an invalid IP address or address is provided",
+                        "schema": {
+                            "$ref": "#/definitions/casper.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Returned when there is an error querying the Casper network or processing the response",
+                        "schema": {
+                            "$ref": "#/definitions/casper.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/{cspr_chain}/get_history_transfers": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Retrieves the transaction history for a given Casper address by querying the specified rpc_node and returns the transactions between the specified block range",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Casper"
+                ],
+                "summary": "Get the transaction history for a Casper address",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "cspr-testnet",
+                        "description": "cspr/cspr-testnet",
+                        "name": "cspr_chain",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "65.21.238.180",
+                        "description": "The IP address of the Casper RPC node",
+                        "name": "rpc_node",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "020237037ff4845669e59d3e7698e7d58eb97ca378960ac57478a86a6a3535460292",
+                        "description": "The public key of the Casper address to retrieve the transaction history for",
+                        "name": "address",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "1638650",
+                        "description": "The starting block height for the transaction history",
+                        "name": "start_block",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "1638660",
+                        "description": "The ending block height for the transaction history",
+                        "name": "end_block",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A JSON object containing the transaction history and decimals values of the provided Casper address",
+                        "schema": {
+                            "$ref": "#/definitions/casper.GetHistoryTransfers.Response"
+                        }
+                    },
+                    "400": {
+                        "description": "Returned when the rpc_node, pubkey, start_block, or end_block parameter is missing, or an invalid IP address, public key, or block height is provided",
+                        "schema": {
+                            "$ref": "#/definitions/casper.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Returned when there is an error querying the Casper network or processing the response",
+                        "schema": {
+                            "$ref": "#/definitions/casper.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/{cspr_chain}/get_history_undelegate": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Retrieves the history of undelegate for a given address by querying the specified rpc_node within a range of block heights",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Casper"
+                ],
+                "summary": "Get history of undelegate deploys for an address",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "cspr-testnet",
+                        "description": "cspr/cspr-testnet",
+                        "name": "cspr_chain",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "65.21.238.180",
+                        "description": "The IP address of the Casper RPC node",
+                        "name": "rpc_node",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "020237037ff4845669e59d3e7698e7d58eb97ca378960ac57478a86a6a3535460292",
+                        "description": "The address for which to retrieve the history of finished unstake",
+                        "name": "address",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "default": 1660930,
+                        "description": "The starting block height for the range",
+                        "name": "block_start",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "default": 1660950,
+                        "description": "The ending block height for the range",
+                        "name": "block_end",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A JSON array containing the history of finished unstakes for the provided address within the specified range",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/casper.GetHistoryUndelegate.Response"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Returned when the rpc_node, address, block_start, or block_end parameter is missing, or an invalid IP address or address is provided",
+                        "schema": {
+                            "$ref": "#/definitions/casper.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Returned when there is an error querying the Casper network or processing the response",
+                        "schema": {
+                            "$ref": "#/definitions/casper.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/{cspr_chain}/get_price_main_coin": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Retrieves the current price of the CSPR coin from a supported exchange",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Casper"
+                ],
+                "summary": "Get the price of the main coin (CSPR)",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "cspr-testnet",
+                        "description": "cspr/cspr-testnet",
+                        "name": "cspr_chain",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A JSON object containing the price of the main coin (CSPR)",
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    "500": {
+                        "description": "Returned when there is an error retrieving the price from the exchange or processing the response",
+                        "schema": {
+                            "$ref": "#/definitions/casper.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/{cspr_chain}/get_rewards_by_blocks": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Retrieves the rewards earned by a given Casper address by querying the specified rpc_node and returns the rewards between the specified block range",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Casper"
+                ],
+                "summary": "Get the rewards earned by a Casper address",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "cspr-testnet",
+                        "description": "cspr/cspr-testnet",
+                        "name": "cspr_chain",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "65.21.238.180",
+                        "description": "The IP address of the Casper RPC node",
+                        "name": "rpc_node",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "011b87a676e4ac0336f54cb40141a97600464cddab056e2664d5f76d77dbd94635",
+                        "description": "The public key of the Casper address to retrieve the rewards for",
+                        "name": "address",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "1639836",
+                        "description": "The starting block height for the rewards",
+                        "name": "start_block",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "1639836",
+                        "description": "The ending block height for the rewards",
+                        "name": "end_block",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A JSON object containing the rewards earned by the provided Casper address",
+                        "schema": {
+                            "$ref": "#/definitions/casper.ResponseRewardsByBlock"
+                        }
+                    },
+                    "400": {
+                        "description": "Returned when the rpc_node, pubkey, start_block, or end_block parameter is missing, or an invalid IP address, public key, or block height is provided",
+                        "schema": {
+                            "$ref": "#/definitions/casper.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Returned when there is an error querying the Casper network or processing the response",
+                        "schema": {
+                            "$ref": "#/definitions/casper.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/{cspr_chain}/get_rewards_by_era": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Retrieves the rewards earned by a given Casper address by querying the specified rpc_node and returns the rewards between the specified block range",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Casper"
+                ],
+                "summary": "Get the rewards earned by a Casper address",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "cspr-testnet",
+                        "description": "cspr/cspr-testnet",
+                        "name": "cspr_chain",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "65.21.238.180",
+                        "description": "The IP address of the Casper RPC node",
+                        "name": "rpc_node",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "020237037ff4845669e59d3e7698e7d58eb97ca378960ac57478a86a6a3535460292",
+                        "description": "The public key of the Casper address to retrieve the rewards for",
+                        "name": "address",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "8902",
+                        "description": "The starting era for the rewards",
+                        "name": "start_era",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "8903",
+                        "description": "The ending era for the rewards",
+                        "name": "end_era",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A JSON object containing the rewards earned by the provided Casper address",
+                        "schema": {
+                            "$ref": "#/definitions/casper.ResponseRewardsByEra"
+                        }
+                    },
+                    "400": {
+                        "description": "Returned when the rpc_node, pubkey, start_block, or end_block parameter is missing, or an invalid IP address, public key, or block height is provided",
+                        "schema": {
+                            "$ref": "#/definitions/casper.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Returned when there is an error querying the Casper network or processing the response",
+                        "schema": {
+                            "$ref": "#/definitions/casper.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/{cspr_chain}/get_timestamp_by_block": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Retrieves the timestamp of a given Casper block by querying the specified rpc_node",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Casper"
+                ],
+                "summary": "Get the timestamp of a Casper block",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "cspr-testnet",
+                        "description": "cspr/cspr-testnet",
+                        "name": "cspr_chain",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "65.21.238.180",
+                        "description": "The IP address of the Casper RPC node",
+                        "name": "rpc_node",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "1639836",
+                        "description": "The block height to retrieve the timestamp for",
+                        "name": "block_height",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A JSON object containing the timestamp of the provided Casper block",
+                        "schema": {
+                            "$ref": "#/definitions/casper.GetTimestampByBlock.Response"
+                        }
+                    },
+                    "400": {
+                        "description": "Returned when the rpc_node, block_height parameter is missing, or an invalid IP address or block height is provided",
+                        "schema": {
+                            "$ref": "#/definitions/casper.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Returned when there is an error querying the Casper network or processing the response",
+                        "schema": {
+                            "$ref": "#/definitions/casper.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/{cspr_chain}/get_timestamp_by_era": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Retrieves the timestamp of a given Casper era by querying the specified rpc_node",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Casper"
+                ],
+                "summary": "Get the timestamp of a Casper era",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "cspr-testnet",
+                        "description": "cspr/cspr-testnet",
+                        "name": "cspr_chain",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "65.21.238.180",
+                        "description": "The IP address of the Casper RPC node",
+                        "name": "rpc_node",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "8822",
+                        "description": "The era ID to retrieve the timestamp for",
+                        "name": "era_id",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A JSON object containing the timestamp of the provided Casper era",
+                        "schema": {
+                            "$ref": "#/definitions/casper.GetTimestampByEra.Response"
+                        }
+                    },
+                    "400": {
+                        "description": "Returned when the rpc_node, era_id parameter is missing, or an invalid IP address or era ID is provided",
+                        "schema": {
+                            "$ref": "#/definitions/casper.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Returned when there is an error querying the Casper network or processing the response",
+                        "schema": {
+                            "$ref": "#/definitions/casper.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/{cspr_chain}/get_validators": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Retrieves the list of validators for the specified chain by querying the specified rpc_node",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Casper"
+                ],
+                "summary": "Get validators list",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "cspr-testnet",
+                        "description": "cspr/cspr-testnet",
+                        "name": "cspr_chain",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "65.21.238.180",
+                        "description": "The IP address of the Casper RPC node",
+                        "name": "rpc_node",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A JSON object containing the validators and the decimal for the specified chain",
+                        "schema": {
+                            "$ref": "#/definitions/casper.ValidatorsResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Returned when the rpc_node or chain parameter is missing, or an invalid IP address is provided",
+                        "schema": {
+                            "$ref": "#/definitions/casper.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Returned when there is an error querying the Casper network or processing the response",
+                        "schema": {
+                            "$ref": "#/definitions/casper.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/{cspr_chain}/is_address": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Determines if the provided public key is a valid Casper address by querying the given rpc_node",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Casper"
+                ],
+                "summary": "Check if a public key is a valid Casper address",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "cspr-testnet",
+                        "description": "cspr/cspr-testnet",
+                        "name": "cspr_chain",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "89.58.55.157",
+                        "description": "The IP address of the Casper RPC node",
+                        "name": "rpc_node",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "011b87a676e4ac0336f54cb40141a97600464cddab056e2664d5f76d77dbd94635",
+                        "description": "The public key of the Casper address to be checked for validity",
+                        "name": "public_key",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A JSON object containing the validity of the provided public key",
+                        "schema": {
+                            "$ref": "#/definitions/casper.IsAddressHandler.Response"
+                        }
+                    },
+                    "400": {
+                        "description": "Returned when the rpc_node or pubkey parameter is missing or an invalid IP address is provided",
+                        "schema": {
+                            "$ref": "#/definitions/casper.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Returned when there is an error querying the Casper network or processing the response",
+                        "schema": {
+                            "$ref": "#/definitions/casper.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/{cspr_chain}/put_deploy": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Put Deploy to the blockchain",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Casper"
+                ],
+                "summary": "Put Deploy to the blockchain",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "cspr-testnet",
+                        "description": "cspr/cspr-testnet",
+                        "name": "cspr_chain",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "65.21.238.180",
+                        "description": "The IP address of the Casper RPC node",
+                        "name": "rpc_node",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A JSON object containing all events from the provided block",
+                        "schema": {
+                            "$ref": "#/definitions/casper.BlockEventsResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Returned when the rpc_node, height, transfers, delegates, or undelegates parameter is missing, or an invalid IP address or block height is provided",
+                        "schema": {
+                            "$ref": "#/definitions/casper.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Returned when there is an error querying the network or processing the response",
+                        "schema": {
+                            "$ref": "#/definitions/casper.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/{cspr_chain}/state": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Retrieves the current block height and era of the Casper network by querying the given rpc_node",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Casper"
+                ],
+                "summary": "Get the current state of the Casper network",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "cspr-testnet",
+                        "description": "cspr/cspr-testnet",
+                        "name": "cspr_chain",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "89.58.55.157",
+                        "description": "The IP address of the Casper RPC node",
+                        "name": "rpc_node",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A JSON object containing the blockHeight and currentEra of the Casper network",
+                        "schema": {
+                            "$ref": "#/definitions/casper.GetStateHandler.Response"
+                        }
+                    },
+                    "400": {
+                        "description": "Returned when the rpc_node parameter is missing or an invalid IP address is provided",
+                        "schema": {
+                            "$ref": "#/definitions/casper.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Returned when there is an error querying the Casper network or processing the response",
+                        "schema": {
+                            "$ref": "#/definitions/casper.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "casper.BlockEventsResponse": {
+            "type": "object",
+            "properties": {
+                "EraID": {
+                    "type": "integer"
+                },
+                "decimals": {
+                    "type": "integer"
+                },
+                "delegates": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/casper.DelegateData"
+                    }
+                },
+                "rewards": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/casper.RewardsData"
+                    }
+                },
+                "timestamp": {
+                    "type": "string"
+                },
+                "transfers": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/casper.TransferResponse"
+                    }
+                },
+                "undelegates": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/casper.UndelegateData"
+                    }
+                }
+            }
+        },
+        "casper.CalculateCurrentChainAPY.Response": {
+            "type": "object",
+            "properties": {
+                "apy": {
+                    "type": "number"
+                }
+            }
+        },
+        "casper.DelegateData": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "type": "string"
+                },
+                "amount": {
+                    "type": "string"
+                },
+                "block_height": {
+                    "type": "integer"
+                },
+                "is_finished": {
+                    "type": "boolean"
+                },
+                "validator_pubkey": {
+                    "type": "string"
+                }
+            }
+        },
+        "casper.ErrorResponse": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "type": "string"
+                }
+            }
+        },
+        "casper.GetAPRByEra.Response": {
+            "type": "object",
+            "properties": {
+                "apr": {
+                    "type": "number"
+                }
+            }
+        },
+        "casper.GetAccountBalanceHandler.Response": {
+            "type": "object",
+            "properties": {
+                "balance": {
+                    "type": "string"
+                },
+                "decimals": {
+                    "type": "integer"
+                }
+            }
+        },
+        "casper.GetBalanceBeingUndelegated.Response": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/casper.PayloadBalanceBeingUndelegated"
+                    }
+                },
+                "decimals": {
+                    "type": "integer"
+                }
+            }
+        },
+        "casper.GetBalanceBeingdelegated.Response": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/casper.PayloadBalanceBeingdelegated"
+                    }
+                },
+                "decimals": {
+                    "type": "integer"
+                }
+            }
+        },
+        "casper.GetBlockByTimestamp.Response": {
+            "type": "object",
+            "properties": {
+                "block_height": {
+                    "type": "integer"
+                },
+                "timestamp": {
+                    "type": "string"
+                }
+            }
+        },
+        "casper.GetDelegatedBalanceHandler.Response": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "amount": {
+                                "type": "string"
+                            },
+                            "validator": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "decimals": {
+                    "type": "integer"
+                }
+            }
+        },
+        "casper.GetEraByTimestamp.Response": {
+            "type": "object",
+            "properties": {
+                "era_id": {
+                    "type": "integer"
+                },
+                "timestamp": {
+                    "type": "string"
+                }
+            }
+        },
+        "casper.GetHistoryDelegate.Response": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/casper.PayloadHistoryDelegate"
+                    }
+                },
+                "decimals": {
+                    "type": "integer"
+                }
+            }
+        },
+        "casper.GetHistoryTransfers.Response": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/casper.TransferResponse"
+                    }
+                },
+                "decimals": {
+                    "type": "integer"
+                }
+            }
+        },
+        "casper.GetHistoryUndelegate.Response": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/casper.PayloadHistoryUndelegate"
+                    }
+                },
+                "decimals": {
+                    "type": "integer"
+                }
+            }
+        },
+        "casper.GetStateHandler.Response": {
+            "type": "object",
+            "properties": {
+                "block_height": {
+                    "type": "integer"
+                },
+                "era_id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "casper.GetTimestampByBlock.Response": {
+            "type": "object",
+            "properties": {
+                "block_height": {
+                    "type": "integer"
+                },
+                "estimated": {
+                    "type": "boolean"
+                },
+                "timestamp": {
+                    "type": "string"
+                }
+            }
+        },
+        "casper.GetTimestampByEra.Response": {
+            "type": "object",
+            "properties": {
+                "era_id": {
+                    "type": "integer"
+                },
+                "estimated": {
+                    "type": "boolean"
+                },
+                "timestamp_era_start": {
+                    "type": "string"
+                }
+            }
+        },
+        "casper.IsAddressHandler.Response": {
+            "type": "object",
+            "properties": {
+                "valid": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "casper.PayloadBalanceBeingUndelegated": {
+            "type": "object",
+            "properties": {
+                "amount": {
+                    "type": "string"
+                },
+                "era_undelegation_finished": {
+                    "type": "integer"
+                },
+                "validator": {
+                    "type": "string"
+                }
+            }
+        },
+        "casper.PayloadBalanceBeingdelegated": {
+            "type": "object",
+            "properties": {
+                "amount": {
+                    "type": "string"
+                },
+                "era_delegation_finished": {
+                    "type": "integer"
+                },
+                "validator": {
+                    "type": "string"
+                }
+            }
+        },
+        "casper.PayloadHistoryDelegate": {
+            "type": "object",
+            "properties": {
+                "amount": {
+                    "type": "string"
+                },
+                "era": {
+                    "type": "integer"
+                },
+                "height": {
+                    "type": "integer"
+                },
+                "is_finished": {
+                    "type": "boolean"
+                },
+                "validator": {
+                    "type": "string"
+                }
+            }
+        },
+        "casper.PayloadHistoryUndelegate": {
+            "type": "object",
+            "properties": {
+                "amount": {
+                    "type": "string"
+                },
+                "era": {
+                    "type": "integer"
+                },
+                "height": {
+                    "type": "integer"
+                },
+                "is_finished": {
+                    "type": "boolean"
+                },
+                "validator": {
+                    "type": "string"
+                }
+            }
+        },
+        "casper.ResponseRewardsByBlock": {
+            "type": "object",
+            "properties": {
+                "decimals": {
+                    "type": "integer"
+                },
+                "rewards": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/casper.RewardsByBlockPayload"
+                    }
+                }
+            }
+        },
+        "casper.ResponseRewardsByEra": {
+            "type": "object",
+            "properties": {
+                "decimals": {
+                    "type": "integer"
+                },
+                "rewards": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/casper.RewardsByEraPayload"
+                    }
+                }
+            }
+        },
+        "casper.RewardsByBlockPayload": {
+            "type": "object",
+            "properties": {
+                "amount": {
+                    "type": "string"
+                },
+                "block": {
+                    "type": "integer"
+                },
+                "validator": {
+                    "type": "string"
+                }
+            }
+        },
+        "casper.RewardsByEraPayload": {
+            "type": "object",
+            "properties": {
+                "amount": {
+                    "type": "string"
+                },
+                "era": {
+                    "type": "integer"
+                },
+                "timestamp": {
+                    "type": "string"
+                },
+                "validator": {
+                    "type": "string"
+                }
+            }
+        },
+        "casper.RewardsData": {
+            "type": "object",
+            "properties": {
+                "amount": {
+                    "type": "string"
+                },
+                "delagator": {
+                    "type": "string"
+                },
+                "validator": {
+                    "type": "string"
+                }
+            }
+        },
+        "casper.TransferResponse": {
+            "type": "object",
+            "properties": {
+                "amount": {
+                    "type": "string"
+                },
+                "deploy_hash": {
+                    "type": "string"
+                },
+                "from": {
+                    "type": "string"
+                },
+                "from_pubkey": {
+                    "type": "string"
+                },
+                "gas": {
+                    "type": "string"
+                },
+                "height": {
+                    "type": "integer"
+                },
+                "to": {
+                    "type": "string"
+                },
+                "to_pubkey": {
+                    "type": "string"
+                }
+            }
+        },
+        "casper.UndelegateData": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "type": "string"
+                },
+                "amount": {
+                    "type": "string"
+                },
+                "era": {
+                    "type": "integer"
+                },
+                "is_finished": {
+                    "type": "boolean"
+                },
+                "validator_pubkey": {
+                    "type": "string"
+                }
+            }
+        },
+        "casper.Validator": {
+            "type": "object",
+            "properties": {
+                "active": {
+                    "type": "boolean"
+                },
+                "address": {
+                    "type": "string"
+                },
+                "fee": {
+                    "type": "number"
+                }
+            }
+        },
+        "casper.ValidatorsResponse": {
+            "type": "object",
+            "properties": {
+                "decimals": {
+                    "type": "integer"
+                },
+                "validators": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/casper.Validator"
+                    }
+                }
+            }
+        }
+    },
+    "securityDefinitions": {
+        "ApiKeyAuth": {
+            "type": "apiKey",
+            "name": "X-Token",
+            "in": "header"
+        }
+    }
+}

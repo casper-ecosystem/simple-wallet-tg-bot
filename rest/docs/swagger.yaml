@@ -1,0 +1,1363 @@
+basePath: /
+definitions:
+  casper.BlockEventsResponse:
+    properties:
+      EraID:
+        type: integer
+      decimals:
+        type: integer
+      delegates:
+        items:
+          $ref: '#/definitions/casper.DelegateData'
+        type: array
+      rewards:
+        items:
+          $ref: '#/definitions/casper.RewardsData'
+        type: array
+      timestamp:
+        type: string
+      transfers:
+        items:
+          $ref: '#/definitions/casper.TransferResponse'
+        type: array
+      undelegates:
+        items:
+          $ref: '#/definitions/casper.UndelegateData'
+        type: array
+    type: object
+  casper.CalculateCurrentChainAPY.Response:
+    properties:
+      apy:
+        type: number
+    type: object
+  casper.DelegateData:
+    properties:
+      address:
+        type: string
+      amount:
+        type: string
+      block_height:
+        type: integer
+      is_finished:
+        type: boolean
+      validator_pubkey:
+        type: string
+    type: object
+  casper.ErrorResponse:
+    properties:
+      error:
+        type: string
+    type: object
+  casper.GetAPRByEra.Response:
+    properties:
+      apr:
+        type: number
+    type: object
+  casper.GetAccountBalanceHandler.Response:
+    properties:
+      balance:
+        type: string
+      decimals:
+        type: integer
+    type: object
+  casper.GetBalanceBeingUndelegated.Response:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/casper.PayloadBalanceBeingUndelegated'
+        type: array
+      decimals:
+        type: integer
+    type: object
+  casper.GetBalanceBeingdelegated.Response:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/casper.PayloadBalanceBeingdelegated'
+        type: array
+      decimals:
+        type: integer
+    type: object
+  casper.GetBlockByTimestamp.Response:
+    properties:
+      block_height:
+        type: integer
+      timestamp:
+        type: string
+    type: object
+  casper.GetDelegatedBalanceHandler.Response:
+    properties:
+      data:
+        items:
+          properties:
+            amount:
+              type: string
+            validator:
+              type: string
+          type: object
+        type: array
+      decimals:
+        type: integer
+    type: object
+  casper.GetEraByTimestamp.Response:
+    properties:
+      era_id:
+        type: integer
+      timestamp:
+        type: string
+    type: object
+  casper.GetHistoryDelegate.Response:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/casper.PayloadHistoryDelegate'
+        type: array
+      decimals:
+        type: integer
+    type: object
+  casper.GetHistoryTransfers.Response:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/casper.TransferResponse'
+        type: array
+      decimals:
+        type: integer
+    type: object
+  casper.GetHistoryUndelegate.Response:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/casper.PayloadHistoryUndelegate'
+        type: array
+      decimals:
+        type: integer
+    type: object
+  casper.GetStateHandler.Response:
+    properties:
+      block_height:
+        type: integer
+      era_id:
+        type: integer
+    type: object
+  casper.GetTimestampByBlock.Response:
+    properties:
+      block_height:
+        type: integer
+      estimated:
+        type: boolean
+      timestamp:
+        type: string
+    type: object
+  casper.GetTimestampByEra.Response:
+    properties:
+      era_id:
+        type: integer
+      estimated:
+        type: boolean
+      timestamp_era_start:
+        type: string
+    type: object
+  casper.IsAddressHandler.Response:
+    properties:
+      valid:
+        type: boolean
+    type: object
+  casper.PayloadBalanceBeingUndelegated:
+    properties:
+      amount:
+        type: string
+      era_undelegation_finished:
+        type: integer
+      validator:
+        type: string
+    type: object
+  casper.PayloadBalanceBeingdelegated:
+    properties:
+      amount:
+        type: string
+      era_delegation_finished:
+        type: integer
+      validator:
+        type: string
+    type: object
+  casper.PayloadHistoryDelegate:
+    properties:
+      amount:
+        type: string
+      era:
+        type: integer
+      height:
+        type: integer
+      is_finished:
+        type: boolean
+      validator:
+        type: string
+    type: object
+  casper.PayloadHistoryUndelegate:
+    properties:
+      amount:
+        type: string
+      era:
+        type: integer
+      height:
+        type: integer
+      is_finished:
+        type: boolean
+      validator:
+        type: string
+    type: object
+  casper.ResponseRewardsByBlock:
+    properties:
+      decimals:
+        type: integer
+      rewards:
+        items:
+          $ref: '#/definitions/casper.RewardsByBlockPayload'
+        type: array
+    type: object
+  casper.ResponseRewardsByEra:
+    properties:
+      decimals:
+        type: integer
+      rewards:
+        items:
+          $ref: '#/definitions/casper.RewardsByEraPayload'
+        type: array
+    type: object
+  casper.RewardsByBlockPayload:
+    properties:
+      amount:
+        type: string
+      block:
+        type: integer
+      validator:
+        type: string
+    type: object
+  casper.RewardsByEraPayload:
+    properties:
+      amount:
+        type: string
+      era:
+        type: integer
+      timestamp:
+        type: string
+      validator:
+        type: string
+    type: object
+  casper.RewardsData:
+    properties:
+      amount:
+        type: string
+      delagator:
+        type: string
+      validator:
+        type: string
+    type: object
+  casper.TransferResponse:
+    properties:
+      amount:
+        type: string
+      deploy_hash:
+        type: string
+      from:
+        type: string
+      from_pubkey:
+        type: string
+      gas:
+        type: string
+      height:
+        type: integer
+      to:
+        type: string
+      to_pubkey:
+        type: string
+    type: object
+  casper.UndelegateData:
+    properties:
+      address:
+        type: string
+      amount:
+        type: string
+      era:
+        type: integer
+      is_finished:
+        type: boolean
+      validator_pubkey:
+        type: string
+    type: object
+  casper.Validator:
+    properties:
+      active:
+        type: boolean
+      address:
+        type: string
+      fee:
+        type: number
+    type: object
+  casper.ValidatorsResponse:
+    properties:
+      decimals:
+        type: integer
+      validators:
+        items:
+          $ref: '#/definitions/casper.Validator'
+        type: array
+    type: object
+host: localhost:8081
+info:
+  contact: {}
+  description: casper blockchain rest api
+  title: CSPR REST
+  version: "1.0"
+paths:
+  /api/v1/{cspr_chain}/calculate_current_chain_apy:
+    get:
+      description: Calculates the current Annual Percentage Yield (APY) for the specified
+        chain by querying the specified rpc_node
+      parameters:
+      - default: cspr-testnet
+        description: cspr/cspr-testnet
+        in: path
+        name: cspr_chain
+        required: true
+        type: string
+      - default: 65.21.238.180
+        description: The IP address of the Casper RPC node
+        in: query
+        name: rpc_node
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: A JSON object containing the current APY for the specified
+            chain
+          schema:
+            $ref: '#/definitions/casper.CalculateCurrentChainAPY.Response'
+        "400":
+          description: Returned when the rpc_node or chain parameter is missing, or
+            an invalid IP address is provided
+          schema:
+            $ref: '#/definitions/casper.ErrorResponse'
+        "500":
+          description: Returned when there is an error querying the Casper network
+            or processing the response
+          schema:
+            $ref: '#/definitions/casper.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Calculate current chain APY
+      tags:
+      - Casper
+  /api/v1/{cspr_chain}/get_apr_by_era:
+    get:
+      description: Retrieves the Annual Percentage Rate (APR) for a delegator address
+        by querying the specified rpc_node within a range of eras
+      parameters:
+      - default: cspr-testnet
+        description: cspr/cspr-testnet
+        in: path
+        name: cspr_chain
+        required: true
+        type: string
+      - default: 65.21.238.180
+        description: The IP address of the Casper RPC node
+        in: query
+        name: rpc_node
+        required: true
+        type: string
+      - default: 020237037ff4845669e59d3e7698e7d58eb97ca378960ac57478a86a6a3535460292
+        description: The address of the delegator for which to retrieve the APR
+        in: query
+        name: address
+        required: true
+        type: string
+      - default: 8924
+        description: The starting era for the range
+        in: query
+        name: era_start
+        required: true
+        type: integer
+      - default: 8927
+        description: The ending era for the range
+        in: query
+        name: era_end
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: A JSON object containing the APY for the provided delegator
+            address within the specified range
+          schema:
+            $ref: '#/definitions/casper.GetAPRByEra.Response'
+        "400":
+          description: Returned when the rpc_node, address, era_start, or era_end
+            parameter is missing, or an invalid IP address or address is provided
+          schema:
+            $ref: '#/definitions/casper.ErrorResponse'
+        "500":
+          description: Returned when there is an error querying the Casper network
+            or processing the response
+          schema:
+            $ref: '#/definitions/casper.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Get APR for a delegator by era range
+      tags:
+      - Casper
+  /api/v1/{cspr_chain}/get_balance_being_delegated:
+    get:
+      description: Retrieves the balance being delegated for a delegator address by
+        querying the specified rpc_node
+      parameters:
+      - default: cspr-testnet
+        description: cspr/cspr-testnet
+        in: path
+        name: cspr_chain
+        required: true
+        type: string
+      - default: 65.21.238.180
+        description: The IP address of the Casper RPC node
+        in: query
+        name: rpc_node
+        required: true
+        type: string
+      - default: 020237037ff4845669e59d3e7698e7d58eb97ca378960ac57478a86a6a3535460292
+        description: The address of the delegator for which to retrieve the balance
+          being delegated
+        in: query
+        name: address
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: An array of JSON objects containing the balance being delegated
+            for the provided delegator address
+          schema:
+            items:
+              $ref: '#/definitions/casper.GetBalanceBeingdelegated.Response'
+            type: array
+        "400":
+          description: Returned when the rpc_node or address parameter is missing,
+            or an invalid IP address or address is provided
+          schema:
+            $ref: '#/definitions/casper.ErrorResponse'
+        "500":
+          description: Returned when there is an error querying the Casper network
+            or processing the response
+          schema:
+            $ref: '#/definitions/casper.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Get balance being delegated for a delegator
+      tags:
+      - Casper
+  /api/v1/{cspr_chain}/get_balance_being_undelegated:
+    get:
+      description: Retrieves the balance being undelegated for a given address by
+        querying the specified rpc_node
+      parameters:
+      - default: cspr-testnet
+        description: cspr/cspr-testnet
+        in: path
+        name: cspr_chain
+        required: true
+        type: string
+      - default: 65.21.238.180
+        description: The IP address of the Casper RPC node
+        in: query
+        name: rpc_node
+        required: true
+        type: string
+      - default: 020237037ff4845669e59d3e7698e7d58eb97ca378960ac57478a86a6a3535460292
+        description: The address for which to retrieve the unstaking balance
+        in: query
+        name: address
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: A JSON array containing the unstaking balances for the provided
+            address
+          schema:
+            items:
+              allOf:
+              - $ref: '#/definitions/casper.GetBalanceBeingUndelegated.Response'
+              - properties:
+                  Data:
+                    $ref: '#/definitions/casper.PayloadBalanceBeingUndelegated'
+                type: object
+            type: array
+        "400":
+          description: Returned when the rpc_node, address parameter is missing, or
+            an invalid IP address or address is provided
+          schema:
+            $ref: '#/definitions/casper.ErrorResponse'
+        "500":
+          description: Returned when there is an error querying the Casper network
+            or processing the response
+          schema:
+            $ref: '#/definitions/casper.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Get the balance being undelegated for an address
+      tags:
+      - Casper
+  /api/v1/{cspr_chain}/get_balance_delegated:
+    get:
+      description: Retrieves the delegated account balance for a given Casper address
+        by querying the specified rpc_node and returns the balance associated with
+        each validator
+      parameters:
+      - default: cspr-testnet
+        description: cspr/cspr-testnet
+        in: path
+        name: cspr_chain
+        required: true
+        type: string
+      - default: 65.21.238.180
+        description: The IP address of the Casper RPC node
+        in: query
+        name: rpc_node
+        required: true
+        type: string
+      - default: 011b87a676e4ac0336f54cb40141a97600464cddab056e2664d5f76d77dbd94635
+        description: The public key of the Casper address to retrieve the delegated
+          balance for
+        in: query
+        name: address
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: A JSON object containing the delegated balance and decimals
+            values of the provided Casper address
+          schema:
+            $ref: '#/definitions/casper.GetDelegatedBalanceHandler.Response'
+        "400":
+          description: Returned when the rpc_node or pubkey parameter is missing or
+            an invalid IP address is provided
+          schema:
+            $ref: '#/definitions/casper.ErrorResponse'
+        "500":
+          description: Returned when there is an error querying the Casper network
+            or processing the response
+          schema:
+            $ref: '#/definitions/casper.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Get delegated account balance for a Casper address
+      tags:
+      - Casper
+  /api/v1/{cspr_chain}/get_balance_main:
+    get:
+      description: Retrieves the account balance for a given Casper address by querying
+        the specified rpc_node
+      parameters:
+      - default: cspr-testnet
+        description: cspr/cspr-testnet
+        in: path
+        name: cspr_chain
+        required: true
+        type: string
+      - default: 65.21.238.180
+        description: The IP address of the Casper RPC node
+        in: query
+        name: rpc_node
+        required: true
+        type: string
+      - default: 011b87a676e4ac0336f54cb40141a97600464cddab056e2664d5f76d77dbd94635
+        description: The public key of the Casper address to retrieve the balance
+          for
+        in: query
+        name: address
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: A JSON object containing the balance and decimals values of
+            the provided Casper address
+          schema:
+            $ref: '#/definitions/casper.GetAccountBalanceHandler.Response'
+        "400":
+          description: Returned when the rpc_node or pubkey parameter is missing or
+            an invalid IP address is provided
+          schema:
+            $ref: '#/definitions/casper.ErrorResponse'
+        "500":
+          description: Returned when there is an error querying the Casper network
+            or processing the response
+          schema:
+            $ref: '#/definitions/casper.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Get liquid account balance for a Casper address
+      tags:
+      - Casper
+  /api/v1/{cspr_chain}/get_block_by_timestamp:
+    get:
+      description: Retrieves the timestamp of a given Casper block by querying the
+        specified rpc_node
+      parameters:
+      - default: cspr-testnet
+        description: cspr/cspr-testnet
+        in: path
+        name: cspr_chain
+        required: true
+        type: string
+      - default: 65.21.238.180
+        description: The IP address of the Casper RPC node
+        in: query
+        name: rpc_node
+        required: true
+        type: string
+      - default: "2023-04-11T11:18:04+00:00"
+        description: The timestamp to retrieve the block height for
+        in: query
+        name: timestamp
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: A JSON object containing the block height of the provided Casper
+            timestamp
+          schema:
+            $ref: '#/definitions/casper.GetBlockByTimestamp.Response'
+        "400":
+          description: Returned when the rpc_node, timestamp parameter is missing,
+            or an invalid IP address or timestamp is provided
+          schema:
+            $ref: '#/definitions/casper.ErrorResponse'
+        "500":
+          description: Returned when there is an error querying the Casper network
+            or processing the response
+          schema:
+            $ref: '#/definitions/casper.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Get the timestamp of a Casper block by timestamp
+      tags:
+      - Casper
+  /api/v1/{cspr_chain}/get_block_events:
+    get:
+      description: Retrieves all events (transfers, delegates, undelegates) from a
+        given block by querying the specified rpc_node
+      parameters:
+      - default: cspr-testnet
+        description: cspr/cspr-testnet
+        in: path
+        name: cspr_chain
+        required: true
+        type: string
+      - default: 65.21.238.180
+        description: The IP address of the Casper RPC node
+        in: query
+        name: rpc_node
+        required: true
+        type: string
+      - default: 1808739
+        description: The block height to retrieve events from
+        in: query
+        name: height
+        required: true
+        type: integer
+      - default: true
+        description: Include transfer events
+        in: query
+        name: transfers
+        required: true
+        type: boolean
+      - default: true
+        description: Include delegate events
+        in: query
+        name: delegates
+        required: true
+        type: boolean
+      - default: true
+        description: Include undelegate events
+        in: query
+        name: undelegates
+        required: true
+        type: boolean
+      - default: true
+        description: Include rewards events
+        in: query
+        name: rewards
+        required: true
+        type: boolean
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: A JSON object containing all events from the provided block
+          schema:
+            $ref: '#/definitions/casper.BlockEventsResponse'
+        "400":
+          description: Returned when the rpc_node, height, transfers, delegates, or
+            undelegates parameter is missing, or an invalid IP address or block height
+            is provided
+          schema:
+            $ref: '#/definitions/casper.ErrorResponse'
+        "500":
+          description: Returned when there is an error querying the network or processing
+            the response
+          schema:
+            $ref: '#/definitions/casper.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Get all events from a specific block
+      tags:
+      - Casper
+  /api/v1/{cspr_chain}/get_era_by_timestamp:
+    get:
+      description: Retrieves the timestamp of a given Casper era by querying the specified
+        rpc_node
+      parameters:
+      - default: cspr-testnet
+        description: cspr/cspr-testnet
+        in: path
+        name: cspr_chain
+        required: true
+        type: string
+      - default: 65.21.238.180
+        description: The IP address of the Casper RPC node
+        in: query
+        name: rpc_node
+        required: true
+        type: string
+      - default: "2023-04-11T11:18:04+00:00"
+        description: The timestamp to retrieve the block height for
+        in: query
+        name: timestamp
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: A JSON object containing the era ID of the provided Casper
+            timestamp
+          schema:
+            $ref: '#/definitions/casper.GetEraByTimestamp.Response'
+        "400":
+          description: Returned when the rpc_node, timestamp parameter is missing,
+            or an invalid IP address or timestamp is provided
+          schema:
+            $ref: '#/definitions/casper.ErrorResponse'
+        "500":
+          description: Returned when there is an error querying the Casper network
+            or processing the response
+          schema:
+            $ref: '#/definitions/casper.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Get the timestamp of a Casper era by timestamp
+      tags:
+      - Casper
+  /api/v1/{cspr_chain}/get_history_delegate:
+    get:
+      description: Retrieves the history of delegates for a given address by querying
+        the specified rpc_node within a range of block heights
+      parameters:
+      - default: cspr-testnet
+        description: cspr/cspr-testnet
+        in: path
+        name: cspr_chain
+        required: true
+        type: string
+      - default: 65.21.238.180
+        description: The IP address of the Casper RPC node
+        in: query
+        name: rpc_node
+        required: true
+        type: string
+      - default: 020237037ff4845669e59d3e7698e7d58eb97ca378960ac57478a86a6a3535460292
+        description: The address for which to retrieve the history of finished stake
+        in: query
+        name: address
+        required: true
+        type: string
+      - default: 1660930
+        description: The starting block height for the range
+        in: query
+        name: block_start
+        required: true
+        type: integer
+      - default: 1660950
+        description: The ending block height for the range
+        in: query
+        name: block_end
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: A JSON array containing the history of finished stakes for
+            the provided address within the specified range
+          schema:
+            items:
+              $ref: '#/definitions/casper.GetHistoryDelegate.Response'
+            type: array
+        "400":
+          description: Returned when the rpc_node, address, block_start, or block_end
+            parameter is missing, or an invalid IP address or address is provided
+          schema:
+            $ref: '#/definitions/casper.ErrorResponse'
+        "500":
+          description: Returned when there is an error querying the Casper network
+            or processing the response
+          schema:
+            $ref: '#/definitions/casper.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Get history of delegates for an address
+      tags:
+      - Casper
+  /api/v1/{cspr_chain}/get_history_transfers:
+    get:
+      description: Retrieves the transaction history for a given Casper address by
+        querying the specified rpc_node and returns the transactions between the specified
+        block range
+      parameters:
+      - default: cspr-testnet
+        description: cspr/cspr-testnet
+        in: path
+        name: cspr_chain
+        required: true
+        type: string
+      - default: 65.21.238.180
+        description: The IP address of the Casper RPC node
+        in: query
+        name: rpc_node
+        required: true
+        type: string
+      - default: 020237037ff4845669e59d3e7698e7d58eb97ca378960ac57478a86a6a3535460292
+        description: The public key of the Casper address to retrieve the transaction
+          history for
+        in: query
+        name: address
+        required: true
+        type: string
+      - default: "1638650"
+        description: The starting block height for the transaction history
+        in: query
+        name: start_block
+        required: true
+        type: string
+      - default: "1638660"
+        description: The ending block height for the transaction history
+        in: query
+        name: end_block
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: A JSON object containing the transaction history and decimals
+            values of the provided Casper address
+          schema:
+            $ref: '#/definitions/casper.GetHistoryTransfers.Response'
+        "400":
+          description: Returned when the rpc_node, pubkey, start_block, or end_block
+            parameter is missing, or an invalid IP address, public key, or block height
+            is provided
+          schema:
+            $ref: '#/definitions/casper.ErrorResponse'
+        "500":
+          description: Returned when there is an error querying the Casper network
+            or processing the response
+          schema:
+            $ref: '#/definitions/casper.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Get the transaction history for a Casper address
+      tags:
+      - Casper
+  /api/v1/{cspr_chain}/get_history_undelegate:
+    get:
+      description: Retrieves the history of undelegate for a given address by querying
+        the specified rpc_node within a range of block heights
+      parameters:
+      - default: cspr-testnet
+        description: cspr/cspr-testnet
+        in: path
+        name: cspr_chain
+        required: true
+        type: string
+      - default: 65.21.238.180
+        description: The IP address of the Casper RPC node
+        in: query
+        name: rpc_node
+        required: true
+        type: string
+      - default: 020237037ff4845669e59d3e7698e7d58eb97ca378960ac57478a86a6a3535460292
+        description: The address for which to retrieve the history of finished unstake
+        in: query
+        name: address
+        required: true
+        type: string
+      - default: 1660930
+        description: The starting block height for the range
+        in: query
+        name: block_start
+        required: true
+        type: integer
+      - default: 1660950
+        description: The ending block height for the range
+        in: query
+        name: block_end
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: A JSON array containing the history of finished unstakes for
+            the provided address within the specified range
+          schema:
+            items:
+              $ref: '#/definitions/casper.GetHistoryUndelegate.Response'
+            type: array
+        "400":
+          description: Returned when the rpc_node, address, block_start, or block_end
+            parameter is missing, or an invalid IP address or address is provided
+          schema:
+            $ref: '#/definitions/casper.ErrorResponse'
+        "500":
+          description: Returned when there is an error querying the Casper network
+            or processing the response
+          schema:
+            $ref: '#/definitions/casper.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Get history of undelegate deploys for an address
+      tags:
+      - Casper
+  /api/v1/{cspr_chain}/get_price_main_coin:
+    get:
+      description: Retrieves the current price of the CSPR coin from a supported exchange
+      parameters:
+      - default: cspr-testnet
+        description: cspr/cspr-testnet
+        in: path
+        name: cspr_chain
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: A JSON object containing the price of the main coin (CSPR)
+          schema:
+            type: number
+        "500":
+          description: Returned when there is an error retrieving the price from the
+            exchange or processing the response
+          schema:
+            $ref: '#/definitions/casper.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Get the price of the main coin (CSPR)
+      tags:
+      - Casper
+  /api/v1/{cspr_chain}/get_rewards_by_blocks:
+    get:
+      description: Retrieves the rewards earned by a given Casper address by querying
+        the specified rpc_node and returns the rewards between the specified block
+        range
+      parameters:
+      - default: cspr-testnet
+        description: cspr/cspr-testnet
+        in: path
+        name: cspr_chain
+        required: true
+        type: string
+      - default: 65.21.238.180
+        description: The IP address of the Casper RPC node
+        in: query
+        name: rpc_node
+        required: true
+        type: string
+      - default: 011b87a676e4ac0336f54cb40141a97600464cddab056e2664d5f76d77dbd94635
+        description: The public key of the Casper address to retrieve the rewards
+          for
+        in: query
+        name: address
+        required: true
+        type: string
+      - default: "1639836"
+        description: The starting block height for the rewards
+        in: query
+        name: start_block
+        required: true
+        type: string
+      - default: "1639836"
+        description: The ending block height for the rewards
+        in: query
+        name: end_block
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: A JSON object containing the rewards earned by the provided
+            Casper address
+          schema:
+            $ref: '#/definitions/casper.ResponseRewardsByBlock'
+        "400":
+          description: Returned when the rpc_node, pubkey, start_block, or end_block
+            parameter is missing, or an invalid IP address, public key, or block height
+            is provided
+          schema:
+            $ref: '#/definitions/casper.ErrorResponse'
+        "500":
+          description: Returned when there is an error querying the Casper network
+            or processing the response
+          schema:
+            $ref: '#/definitions/casper.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Get the rewards earned by a Casper address
+      tags:
+      - Casper
+  /api/v1/{cspr_chain}/get_rewards_by_era:
+    get:
+      description: Retrieves the rewards earned by a given Casper address by querying
+        the specified rpc_node and returns the rewards between the specified block
+        range
+      parameters:
+      - default: cspr-testnet
+        description: cspr/cspr-testnet
+        in: path
+        name: cspr_chain
+        required: true
+        type: string
+      - default: 65.21.238.180
+        description: The IP address of the Casper RPC node
+        in: query
+        name: rpc_node
+        required: true
+        type: string
+      - default: 020237037ff4845669e59d3e7698e7d58eb97ca378960ac57478a86a6a3535460292
+        description: The public key of the Casper address to retrieve the rewards
+          for
+        in: query
+        name: address
+        required: true
+        type: string
+      - default: "8902"
+        description: The starting era for the rewards
+        in: query
+        name: start_era
+        required: true
+        type: string
+      - default: "8903"
+        description: The ending era for the rewards
+        in: query
+        name: end_era
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: A JSON object containing the rewards earned by the provided
+            Casper address
+          schema:
+            $ref: '#/definitions/casper.ResponseRewardsByEra'
+        "400":
+          description: Returned when the rpc_node, pubkey, start_block, or end_block
+            parameter is missing, or an invalid IP address, public key, or block height
+            is provided
+          schema:
+            $ref: '#/definitions/casper.ErrorResponse'
+        "500":
+          description: Returned when there is an error querying the Casper network
+            or processing the response
+          schema:
+            $ref: '#/definitions/casper.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Get the rewards earned by a Casper address
+      tags:
+      - Casper
+  /api/v1/{cspr_chain}/get_timestamp_by_block:
+    get:
+      description: Retrieves the timestamp of a given Casper block by querying the
+        specified rpc_node
+      parameters:
+      - default: cspr-testnet
+        description: cspr/cspr-testnet
+        in: path
+        name: cspr_chain
+        required: true
+        type: string
+      - default: 65.21.238.180
+        description: The IP address of the Casper RPC node
+        in: query
+        name: rpc_node
+        required: true
+        type: string
+      - default: "1639836"
+        description: The block height to retrieve the timestamp for
+        in: query
+        name: block_height
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: A JSON object containing the timestamp of the provided Casper
+            block
+          schema:
+            $ref: '#/definitions/casper.GetTimestampByBlock.Response'
+        "400":
+          description: Returned when the rpc_node, block_height parameter is missing,
+            or an invalid IP address or block height is provided
+          schema:
+            $ref: '#/definitions/casper.ErrorResponse'
+        "500":
+          description: Returned when there is an error querying the Casper network
+            or processing the response
+          schema:
+            $ref: '#/definitions/casper.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Get the timestamp of a Casper block
+      tags:
+      - Casper
+  /api/v1/{cspr_chain}/get_timestamp_by_era:
+    get:
+      description: Retrieves the timestamp of a given Casper era by querying the specified
+        rpc_node
+      parameters:
+      - default: cspr-testnet
+        description: cspr/cspr-testnet
+        in: path
+        name: cspr_chain
+        required: true
+        type: string
+      - default: 65.21.238.180
+        description: The IP address of the Casper RPC node
+        in: query
+        name: rpc_node
+        required: true
+        type: string
+      - default: "8822"
+        description: The era ID to retrieve the timestamp for
+        in: query
+        name: era_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: A JSON object containing the timestamp of the provided Casper
+            era
+          schema:
+            $ref: '#/definitions/casper.GetTimestampByEra.Response'
+        "400":
+          description: Returned when the rpc_node, era_id parameter is missing, or
+            an invalid IP address or era ID is provided
+          schema:
+            $ref: '#/definitions/casper.ErrorResponse'
+        "500":
+          description: Returned when there is an error querying the Casper network
+            or processing the response
+          schema:
+            $ref: '#/definitions/casper.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Get the timestamp of a Casper era
+      tags:
+      - Casper
+  /api/v1/{cspr_chain}/get_validators:
+    get:
+      description: Retrieves the list of validators for the specified chain by querying
+        the specified rpc_node
+      parameters:
+      - default: cspr-testnet
+        description: cspr/cspr-testnet
+        in: path
+        name: cspr_chain
+        required: true
+        type: string
+      - default: 65.21.238.180
+        description: The IP address of the Casper RPC node
+        in: query
+        name: rpc_node
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: A JSON object containing the validators and the decimal for
+            the specified chain
+          schema:
+            $ref: '#/definitions/casper.ValidatorsResponse'
+        "400":
+          description: Returned when the rpc_node or chain parameter is missing, or
+            an invalid IP address is provided
+          schema:
+            $ref: '#/definitions/casper.ErrorResponse'
+        "500":
+          description: Returned when there is an error querying the Casper network
+            or processing the response
+          schema:
+            $ref: '#/definitions/casper.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Get validators list
+      tags:
+      - Casper
+  /api/v1/{cspr_chain}/is_address:
+    get:
+      description: Determines if the provided public key is a valid Casper address
+        by querying the given rpc_node
+      parameters:
+      - default: cspr-testnet
+        description: cspr/cspr-testnet
+        in: path
+        name: cspr_chain
+        required: true
+        type: string
+      - default: 89.58.55.157
+        description: The IP address of the Casper RPC node
+        in: query
+        name: rpc_node
+        required: true
+        type: string
+      - default: 011b87a676e4ac0336f54cb40141a97600464cddab056e2664d5f76d77dbd94635
+        description: The public key of the Casper address to be checked for validity
+        in: query
+        name: public_key
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: A JSON object containing the validity of the provided public
+            key
+          schema:
+            $ref: '#/definitions/casper.IsAddressHandler.Response'
+        "400":
+          description: Returned when the rpc_node or pubkey parameter is missing or
+            an invalid IP address is provided
+          schema:
+            $ref: '#/definitions/casper.ErrorResponse'
+        "500":
+          description: Returned when there is an error querying the Casper network
+            or processing the response
+          schema:
+            $ref: '#/definitions/casper.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Check if a public key is a valid Casper address
+      tags:
+      - Casper
+  /api/v1/{cspr_chain}/put_deploy:
+    get:
+      description: Put Deploy to the blockchain
+      parameters:
+      - default: cspr-testnet
+        description: cspr/cspr-testnet
+        in: path
+        name: cspr_chain
+        required: true
+        type: string
+      - default: 65.21.238.180
+        description: The IP address of the Casper RPC node
+        in: query
+        name: rpc_node
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: A JSON object containing all events from the provided block
+          schema:
+            $ref: '#/definitions/casper.BlockEventsResponse'
+        "400":
+          description: Returned when the rpc_node, height, transfers, delegates, or
+            undelegates parameter is missing, or an invalid IP address or block height
+            is provided
+          schema:
+            $ref: '#/definitions/casper.ErrorResponse'
+        "500":
+          description: Returned when there is an error querying the network or processing
+            the response
+          schema:
+            $ref: '#/definitions/casper.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Put Deploy to the blockchain
+      tags:
+      - Casper
+  /api/v1/{cspr_chain}/state:
+    get:
+      description: Retrieves the current block height and era of the Casper network
+        by querying the given rpc_node
+      parameters:
+      - default: cspr-testnet
+        description: cspr/cspr-testnet
+        in: path
+        name: cspr_chain
+        required: true
+        type: string
+      - default: 89.58.55.157
+        description: The IP address of the Casper RPC node
+        in: query
+        name: rpc_node
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: A JSON object containing the blockHeight and currentEra of
+            the Casper network
+          schema:
+            $ref: '#/definitions/casper.GetStateHandler.Response'
+        "400":
+          description: Returned when the rpc_node parameter is missing or an invalid
+            IP address is provided
+          schema:
+            $ref: '#/definitions/casper.ErrorResponse'
+        "500":
+          description: Returned when there is an error querying the Casper network
+            or processing the response
+          schema:
+            $ref: '#/definitions/casper.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Get the current state of the Casper network
+      tags:
+      - Casper
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: X-Token
+    type: apiKey
+swagger: "2.0"

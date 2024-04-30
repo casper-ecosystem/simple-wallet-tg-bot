@@ -1,0 +1,5 @@
+.git/
+.gitignore
+.dockerignore
+github_username.txt
+github_token.txt
