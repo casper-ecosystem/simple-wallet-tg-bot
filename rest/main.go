@@ -36,7 +36,7 @@ func main() {
 	casperBlockchain := casper.New(casperclient, logger)
 	swagdoc := ginSwagger.WrapHandler(swaggerFiles.Handler)
 	swagdocsfile.SwaggerInfo.Host = ""
-	swagdocsfile.SwaggerInfo.BasePath = "/rest"
+	swagdocsfile.SwaggerInfo.BasePath = "/"
 
 	handler := handlers.NewHandler(logger, casperBlockchain, casperBlockchain, swagdoc, GetAuthConf())
 
