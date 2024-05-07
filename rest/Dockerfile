@@ -1,7 +1,7 @@
 FROM golang:latest AS build-env
 WORKDIR /src
 ENV CGO_ENABLED=0
-ENV GOPRIVATE=github.com/Simplewallethq/library
+ENV GOPRIVATE=github.com/Simplewallethq/*
 COPY . .
 ARG GITHUB_ACCESS_TOKEN
 
