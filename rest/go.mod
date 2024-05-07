@@ -3,7 +3,7 @@ module github.com/Simplewallethq/rest-api
 go 1.20
 
 require (
-	github.com/Simplewallethq/library v0.0.0-20240212193716-11875b0d173e
+	github.com/Simplewallethq/source-code/library v0.0.0-20240507125800-7cc20b746a8c
 	github.com/gin-gonic/gin v1.9.1
 	github.com/make-software/casper-go-sdk v1.5.1
 	github.com/sirupsen/logrus v1.9.3
@@ -14,7 +14,6 @@ require (
 
 require (
 	github.com/KyleBanks/depth v1.2.1 // indirect
-	github.com/btcsuite/btcd v0.22.1 // indirect
 	github.com/bytedance/sonic v1.10.2 // indirect
 	github.com/chenzhuoyu/base64x v0.0.0-20230717121745-296ad89f973d // indirect
 	github.com/chenzhuoyu/iasm v0.9.1 // indirect
