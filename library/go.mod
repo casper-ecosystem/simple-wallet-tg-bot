@@ -1,4 +1,4 @@
-module github.com/Simplewallethq/library
+module github.com/Simplewallethq/source-code/library
 
 go 1.20
 
