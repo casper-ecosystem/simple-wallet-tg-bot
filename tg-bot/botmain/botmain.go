@@ -4,21 +4,21 @@ import (
 	"context"
 	"log"
 
-	"github.com/Simplewallethq/tg-bot/botmain/crypto"
-	"github.com/Simplewallethq/tg-bot/botmain/notificator"
-	"github.com/Simplewallethq/tg-bot/botmain/restclient"
-	"github.com/Simplewallethq/tg-bot/botmain/swap"
-	"github.com/Simplewallethq/tg-bot/botmain/userstate"
-	"github.com/Simplewallethq/tg-bot/botmain/validators"
-	"github.com/Simplewallethq/tg-bot/ent"
-	"github.com/Simplewallethq/tg-bot/ent/user"
-	pb "github.com/Simplewallethq/tg-bot/tggateway/proto"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/botmain/crypto"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/botmain/notificator"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/botmain/restclient"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/botmain/swap"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/botmain/userstate"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/botmain/validators"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/ent"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/ent/user"
+	pb "github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/tggateway/proto"
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
 	"google.golang.org/protobuf/proto"
 
-	"github.com/Simplewallethq/tg-bot/botmain/taskrecover"
-	tggateway "github.com/Simplewallethq/tg-bot/tggateway/types"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/botmain/taskrecover"
+	tggateway "github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/tggateway/types"
 )
 
 type BotMain struct {

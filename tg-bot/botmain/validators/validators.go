@@ -5,9 +5,9 @@ import (
 	"log"
 	"time"
 
-	"github.com/Simplewallethq/tg-bot/botmain/restclient"
-	"github.com/Simplewallethq/tg-bot/ent"
-	entval "github.com/Simplewallethq/tg-bot/ent/validators"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/botmain/restclient"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/ent"
+	entval "github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/ent/validators"
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
 )

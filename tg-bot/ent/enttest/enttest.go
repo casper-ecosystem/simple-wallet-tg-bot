@@ -5,12 +5,12 @@ package enttest
 import (
 	"context"
 
-	"github.com/Simplewallethq/tg-bot/ent"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/ent"
 	// required by schema hooks.
-	_ "github.com/Simplewallethq/tg-bot/ent/runtime"
+	_ "github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/ent/runtime"
 
 	"entgo.io/ent/dialect/sql/schema"
-	"github.com/Simplewallethq/tg-bot/ent/migrate"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/ent/migrate"
 )
 
 type (

@@ -11,8 +11,8 @@ import (
 	"log"
 	"os"
 
-	"github.com/Simplewallethq/tg-bot/ent"
-	"github.com/Simplewallethq/tg-bot/ent/user"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/ent"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/ent/user"
 	"github.com/make-software/casper-go-sdk/types/keypair"
 	csprsecp "github.com/make-software/casper-go-sdk/types/keypair/secp256k1"
 	"github.com/pkg/errors"

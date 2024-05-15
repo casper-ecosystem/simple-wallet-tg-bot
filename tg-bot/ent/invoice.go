@@ -8,8 +8,8 @@ import (
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
-	"github.com/Simplewallethq/tg-bot/ent/invoice"
-	"github.com/Simplewallethq/tg-bot/ent/user"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/ent/invoice"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/ent/user"
 )
 
 // Invoice is the model entity for the Invoice schema.

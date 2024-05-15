@@ -8,8 +8,8 @@ import (
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
-	"github.com/Simplewallethq/tg-bot/ent/recentinvoices"
-	"github.com/Simplewallethq/tg-bot/ent/user"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/ent/recentinvoices"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/ent/user"
 )
 
 // RecentInvoices is the model entity for the RecentInvoices schema.

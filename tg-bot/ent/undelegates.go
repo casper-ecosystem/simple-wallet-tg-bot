@@ -9,8 +9,8 @@ import (
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
-	"github.com/Simplewallethq/tg-bot/ent/undelegates"
-	"github.com/Simplewallethq/tg-bot/ent/user"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/ent/undelegates"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/ent/user"
 )
 
 // Undelegates is the model entity for the Undelegates schema.

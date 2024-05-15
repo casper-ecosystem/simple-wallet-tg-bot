@@ -11,9 +11,9 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/Simplewallethq/tg-bot/ent/predicate"
-	"github.com/Simplewallethq/tg-bot/ent/transfers"
-	"github.com/Simplewallethq/tg-bot/ent/user"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/ent/predicate"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/ent/transfers"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/ent/user"
 )
 
 // TransfersUpdate is the builder for updating Transfers entities.

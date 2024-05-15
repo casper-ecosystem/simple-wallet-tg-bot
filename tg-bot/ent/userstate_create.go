@@ -10,8 +10,8 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/Simplewallethq/tg-bot/ent/user"
-	"github.com/Simplewallethq/tg-bot/ent/userstate"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/ent/user"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/ent/userstate"
 )
 
 // UserStateCreate is the builder for creating a UserState entity.

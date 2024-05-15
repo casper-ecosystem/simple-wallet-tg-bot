@@ -10,9 +10,9 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/Simplewallethq/tg-bot/ent/predicate"
-	"github.com/Simplewallethq/tg-bot/ent/rewardsdata"
-	"github.com/Simplewallethq/tg-bot/ent/user"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/ent/predicate"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/ent/rewardsdata"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/ent/user"
 )
 
 // RewardsDataQuery is the builder for querying RewardsData entities.

@@ -1,4 +1,4 @@
-module github.com/Simplewallethq/source-code/library
+module github.com/Simplewallethq/simple-wallet-tg-bot/library
 
 go 1.20
 

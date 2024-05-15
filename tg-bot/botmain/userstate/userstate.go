@@ -4,8 +4,8 @@ import (
 	"context"
 	"strings"
 
-	"github.com/Simplewallethq/tg-bot/ent"
-	"github.com/Simplewallethq/tg-bot/ent/user"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/ent"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/ent/user"
 	"github.com/sirupsen/logrus"
 )
 

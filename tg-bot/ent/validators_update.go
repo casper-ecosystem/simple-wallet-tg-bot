@@ -10,8 +10,8 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/Simplewallethq/tg-bot/ent/predicate"
-	"github.com/Simplewallethq/tg-bot/ent/validators"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/ent/predicate"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/ent/validators"
 )
 
 // ValidatorsUpdate is the builder for updating Validators entities.

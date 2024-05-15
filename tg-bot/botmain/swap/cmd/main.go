@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/Simplewallethq/tg-bot/botmain/swap"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/botmain/swap"
 )
 
 func main() {

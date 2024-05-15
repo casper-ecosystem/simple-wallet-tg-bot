@@ -4,9 +4,9 @@ import (
 	"encoding/json"
 	"log"
 
-	"github.com/Simplewallethq/tg-bot/botmain/crypto"
-	"github.com/Simplewallethq/tg-bot/botmain/restclient"
-	"github.com/Simplewallethq/tg-bot/ent"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/botmain/crypto"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/botmain/restclient"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/ent"
 	_ "github.com/lib/pq"
 )
 

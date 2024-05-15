@@ -3,9 +3,9 @@ package botmain
 import (
 	"context"
 
-	"github.com/Simplewallethq/tg-bot/ent/user"
-	pb "github.com/Simplewallethq/tg-bot/tggateway/proto"
-	tggateway "github.com/Simplewallethq/tg-bot/tggateway/types"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/ent/user"
+	pb "github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/tggateway/proto"
+	tggateway "github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/tggateway/types"
 	"github.com/pkg/errors"
 	"google.golang.org/protobuf/proto"
 )

@@ -1,4 +1,4 @@
-module github.com/Simplewallethq/tg-bot
+module github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot
 
 go 1.21
 

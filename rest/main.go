@@ -8,10 +8,10 @@ import (
 	"strconv"
 	"syscall"
 
-	"github.com/Simplewallethq/rest-api/blockchain/casper"
-	swagdocsfile "github.com/Simplewallethq/rest-api/docs"
-	"github.com/Simplewallethq/rest-api/handlers"
-	casperlib "github.com/Simplewallethq/source-code/library/client"
+	casperlib "github.com/Simplewallethq/simple-wallet-tg-bot/library/client"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/rest-api/blockchain/casper"
+	swagdocsfile "github.com/Simplewallethq/simple-wallet-tg-bot/rest-api/docs"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/rest-api/handlers"
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
 	swaggerFiles "github.com/swaggo/files" // swagger embed files

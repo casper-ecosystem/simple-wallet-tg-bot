@@ -5,11 +5,11 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/Simplewallethq/rest-api/blockchain/casper"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/rest-api/blockchain/casper"
 
-	"github.com/Simplewallethq/rest-api/middleware/mw_logger"
-	"github.com/Simplewallethq/rest-api/middleware/mwauth"
-	"github.com/Simplewallethq/rest-api/middleware/timeout"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/rest-api/middleware/mw_logger"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/rest-api/middleware/mwauth"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/rest-api/middleware/timeout"
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
 	// swagger embed files

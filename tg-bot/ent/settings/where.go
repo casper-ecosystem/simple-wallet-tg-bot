@@ -4,7 +4,7 @@ package settings
 
 import (
 	"entgo.io/ent/dialect/sql"
-	"github.com/Simplewallethq/tg-bot/ent/predicate"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/ent/predicate"
 )
 
 // ID filters vertices based on their ID field.

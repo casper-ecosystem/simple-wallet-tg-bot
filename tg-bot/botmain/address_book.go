@@ -5,12 +5,12 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/Simplewallethq/tg-bot/ent/adressbook"
-	"github.com/Simplewallethq/tg-bot/ent/user"
-	pb "github.com/Simplewallethq/tg-bot/tggateway/proto"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/ent/adressbook"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/ent/user"
+	pb "github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/tggateway/proto"
 
 	//"github.com/Simplewallethq/tg-bot/tggateway/types"
-	tggateway "github.com/Simplewallethq/tg-bot/tggateway/types"
+	tggateway "github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/tggateway/types"
 	"github.com/pkg/errors"
 	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/types/known/timestamppb"

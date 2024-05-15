@@ -3,7 +3,7 @@ package types
 import (
 	"time"
 
-	pb "github.com/Simplewallethq/tg-bot/tggateway/proto"
+	pb "github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/tggateway/proto"
 )
 
 type TgMessageMsg struct {

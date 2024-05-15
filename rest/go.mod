@@ -1,4 +1,4 @@
-module github.com/Simplewallethq/rest-api
+module github.com/Simplewallethq/simple-wallet-tg-bot/rest-api
 
 go 1.20
 

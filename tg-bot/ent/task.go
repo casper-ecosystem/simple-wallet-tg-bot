@@ -9,7 +9,7 @@ import (
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
-	"github.com/Simplewallethq/tg-bot/ent/task"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/ent/task"
 )
 
 // Task is the model entity for the Task schema.

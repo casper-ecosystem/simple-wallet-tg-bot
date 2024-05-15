@@ -10,7 +10,7 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/Simplewallethq/tg-bot/ent/validators"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/ent/validators"
 )
 
 // ValidatorsCreate is the builder for creating a Validators entity.

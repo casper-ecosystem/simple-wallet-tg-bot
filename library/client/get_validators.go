@@ -3,7 +3,7 @@ package client
 import (
 	"net/http"
 
-	"github.com/Simplewallethq/source-code/library/blockchain"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/library/blockchain"
 	sdk "github.com/make-software/casper-go-sdk/casper"
 )
 

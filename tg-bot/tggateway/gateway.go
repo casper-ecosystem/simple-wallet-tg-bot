@@ -4,8 +4,8 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/Simplewallethq/tg-bot/tggateway/handlers"
-	"github.com/Simplewallethq/tg-bot/tggateway/messages"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/tggateway/handlers"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/tggateway/messages"
 	"github.com/sirupsen/logrus"
 	tele "gopkg.in/telebot.v3"
 )

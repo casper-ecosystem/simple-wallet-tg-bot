@@ -8,8 +8,8 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/Simplewallethq/tg-bot/ent/adressbook"
-	"github.com/Simplewallethq/tg-bot/ent/predicate"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/ent/adressbook"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/ent/predicate"
 )
 
 // AdressBookDelete is the builder for deleting a AdressBook entity.

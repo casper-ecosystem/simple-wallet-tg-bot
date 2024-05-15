@@ -3,9 +3,9 @@ package messages
 import (
 	"errors"
 
-	"github.com/Simplewallethq/tg-bot/tggateway/messages/eng"
-	pb "github.com/Simplewallethq/tg-bot/tggateway/proto"
-	"github.com/Simplewallethq/tg-bot/tggateway/types"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/tggateway/messages/eng"
+	pb "github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/tggateway/proto"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/tggateway/types"
 )
 
 func GetWelcomeMsg(lang string) (interface{}, []interface{}, error) {

@@ -6,7 +6,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/Simplewallethq/tg-bot/ent"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/ent"
 )
 
 // The AdressBookFunc type is an adapter to allow the use of ordinary

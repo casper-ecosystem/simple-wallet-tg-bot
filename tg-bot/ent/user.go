@@ -9,10 +9,10 @@ import (
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
-	"github.com/Simplewallethq/tg-bot/ent/balances"
-	"github.com/Simplewallethq/tg-bot/ent/privatekeys"
-	"github.com/Simplewallethq/tg-bot/ent/user"
-	"github.com/Simplewallethq/tg-bot/ent/userstate"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/ent/balances"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/ent/privatekeys"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/ent/user"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/ent/userstate"
 )
 
 // User is the model entity for the User schema.

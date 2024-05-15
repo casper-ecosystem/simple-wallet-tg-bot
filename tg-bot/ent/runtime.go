@@ -5,10 +5,10 @@ package ent
 import (
 	"time"
 
-	"github.com/Simplewallethq/tg-bot/ent/rewardsdata"
-	"github.com/Simplewallethq/tg-bot/ent/schema"
-	"github.com/Simplewallethq/tg-bot/ent/task"
-	"github.com/Simplewallethq/tg-bot/ent/user"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/ent/rewardsdata"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/ent/schema"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/ent/task"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/ent/user"
 )
 
 // The init function reads all schema descriptors with runtime code

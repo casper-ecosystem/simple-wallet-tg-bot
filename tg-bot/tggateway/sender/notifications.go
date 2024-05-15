@@ -1,9 +1,9 @@
 package sender
 
 import (
-	"github.com/Simplewallethq/tg-bot/tggateway/messages"
-	pb "github.com/Simplewallethq/tg-bot/tggateway/proto"
-	"github.com/Simplewallethq/tg-bot/tggateway/types"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/tggateway/messages"
+	pb "github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/tggateway/proto"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/tggateway/types"
 	"google.golang.org/protobuf/proto"
 )
 

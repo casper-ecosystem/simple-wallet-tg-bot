@@ -8,7 +8,7 @@ import (
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
-	"github.com/Simplewallethq/tg-bot/ent/validators"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/ent/validators"
 )
 
 // Validators is the model entity for the Validators schema.

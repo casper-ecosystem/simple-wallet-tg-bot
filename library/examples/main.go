@@ -4,8 +4,8 @@ import (
 	"log"
 	"time"
 
-	"github.com/Simplewallethq/source-code/library/blockchain"
-	csprclient "github.com/Simplewallethq/source-code/library/client"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/library/blockchain"
+	csprclient "github.com/Simplewallethq/simple-wallet-tg-bot/library/client"
 )
 
 var rpc_url string = "http://65.21.238.180:7777/rpc"

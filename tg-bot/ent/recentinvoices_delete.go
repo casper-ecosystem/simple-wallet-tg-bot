@@ -8,8 +8,8 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/Simplewallethq/tg-bot/ent/predicate"
-	"github.com/Simplewallethq/tg-bot/ent/recentinvoices"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/ent/predicate"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/tg-bot/ent/recentinvoices"
 )
 
 // RecentInvoicesDelete is the builder for deleting a RecentInvoices entity.

@@ -9,7 +9,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/Simplewallethq/source-code/library/blockchain"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/library/blockchain"
 	"github.com/gin-gonic/gin"
 	"github.com/make-software/casper-go-sdk/types"
 	"github.com/sirupsen/logrus"

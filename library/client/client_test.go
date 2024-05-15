@@ -9,7 +9,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Simplewallethq/source-code/library/blockchain"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/library/blockchain"
 	"github.com/google/go-cmp/cmp"
 	newsdk "github.com/make-software/casper-go-sdk/casper"
 	"github.com/stretchr/testify/assert"

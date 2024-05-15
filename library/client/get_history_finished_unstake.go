@@ -4,7 +4,7 @@ import (
 	"errors"
 	"net/http"
 
-	"github.com/Simplewallethq/source-code/library/blockchain"
+	"github.com/Simplewallethq/simple-wallet-tg-bot/library/blockchain"
 	newsdk "github.com/make-software/casper-go-sdk/casper"
 	sdkrpc "github.com/make-software/casper-go-sdk/rpc"
 )
