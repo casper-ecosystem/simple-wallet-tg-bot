@@ -3,7 +3,7 @@ module github.com/Simplewallethq/simple-wallet-tg-bot/rest-api
 go 1.20
 
 require (
-	github.com/Simplewallethq/source-code/library v0.0.0-20240507125800-7cc20b746a8c
+	github.com/Simplewallethq/simple-wallet-tg-bot/library v0.0.0-20240515161257-1ab21267296d
 	github.com/gin-gonic/gin v1.9.1
 	github.com/make-software/casper-go-sdk v1.5.1
 	github.com/sirupsen/logrus v1.9.3
